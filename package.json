@@ -1,18 +1,14 @@
 {
-  "name": "react-native-template-typescript",
+  "name": "react-native-template-redbeard",
   "version": "0.0.1",
-  "description": "Clean and minimalist React Native template for a quick start with TypeScript.",
-  "scripts": {
-    "test": "exit 0",
-    "prepublishOnly": "npm --no-git-tag-version version $TRAVIS_TAG"
-  },
+  "description": "TODO",
   "files": [
     "template",
     "template.config.js"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emin93/react-native-template-typescript.git"
+    "url": "git+https://github.com/brains-and-beards/react-native-template-redbeard.git"
   },
   "keywords": [
     "react-native",
@@ -24,7 +20,7 @@
   "author": "Emin Khateeb <emin@emin.ch>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/emin93/react-native-template-typescript/issues"
+    "url": "https://github.com/brains-and-beards/react-native-template-redbeard/issues"
   },
-  "homepage": "https://github.com/emin93/react-native-template-typescript#readme"
+  "homepage": "https://github.com/brains-and-beards/react-native-template-redbeard.git#readme"
 }

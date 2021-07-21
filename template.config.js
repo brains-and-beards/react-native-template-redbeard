@@ -1,4 +1,5 @@
 module.exports = {
-  placeholderName: 'HelloWorld',
-  templateDir: './template',
-}
+  placeholderName: "HelloWorld",
+  titlePlaceholder: "Hello App Display Name",
+  templateDir: "./template",
+};
