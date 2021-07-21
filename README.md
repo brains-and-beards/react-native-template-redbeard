@@ -1,5 +1,58 @@
 # TODO
 
+## File tree
+
+#### @types/
+
+Declaration files (d.ts)
+
+#### api/
+
+Anything related to external communication.
+
+#### assets/
+
+Static files like images, sounds, fonts(.otf, .ttf)
+
+- assets/fonts - fonts (_.otf, _.ttf)
+- assets/images/pressable - .svg, .png images used for pressable components
+
+#### components/
+
+Reusable components
+
+#### config/
+
+Things we can manipulate to adjust the app behaviour
+
+#### hoc/
+
+Reusable higher order components
+
+#### hooks/
+
+Reusable hooks
+
+#### localization/
+
+Things related to user locale
+
+#### navigation/
+
+Navigators, routes
+
+#### redux/
+
+Actions, reducers, sagas
+
+#### screens/
+
+App screens
+
+#### utils/
+
+Universal helpers
+
 <s>
 # :space_invader: React Native Template TypeScript
 
