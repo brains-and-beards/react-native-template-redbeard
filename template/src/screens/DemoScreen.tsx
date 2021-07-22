@@ -1,11 +1,15 @@
 import MainScreenLayout from '@components/layouts/MainScreenLayout';
 import Colors from '@config/ui/colors';
+import useAppDispatch from '@hooks/useAppDispatch';
+import useAppSelector from '@hooks/useAppSelector';
 import {RootStackParamList} from '@navigation/navigators/RootStackNavigator';
 import Routes from '@navigation/routes';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {addToCounter, substractFromCounter} from '@redux/demoScreen/actions';
+import {counterSelector} from '@redux/demoScreen/selectors';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
 type DemoScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -21,10 +25,21 @@ interface DemoScreenProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DemoScreen = ({navigation, route}: DemoScreenProps) => {
+  const counter = useAppSelector(counterSelector);
+  const dispatch = useAppDispatch();
+
   return (
     <MainScreenLayout>
       <View style={styles.demoCard}>
-        <Text style={styles.demoText}>Demo text</Text>
+        <Button
+          onPress={() => dispatch(addToCounter(5))}
+          title="Increment counter by 5"
+        />
+        <Button
+          onPress={() => dispatch(substractFromCounter(15))}
+          title="Decrement counter by 15"
+        />
+        <Text style={styles.demoText}>Counter: {counter}</Text>
       </View>
     </MainScreenLayout>
   );
@@ -47,6 +62,7 @@ const styles = StyleSheet.create({
   },
   demoText: {
     color: Colors.onSurface,
+    textAlign: 'center',
   },
 });
 
