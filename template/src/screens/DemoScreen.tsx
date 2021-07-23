@@ -6,8 +6,11 @@ import {RootStackParamList} from '@navigation/navigators/RootStackNavigator';
 import Routes from '@navigation/routes';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {addToCounter, substractFromCounter} from '@redux/demoScreen/actions';
-import {counterSelector} from '@redux/demoScreen/selectors';
+import {
+  decrementCounterBy,
+  incrementCounterBy,
+  selectCounter,
+} from '@redux/demoScreen/slice';
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 
@@ -25,18 +28,18 @@ interface DemoScreenProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DemoScreen = ({navigation, route}: DemoScreenProps) => {
-  const counter = useAppSelector(counterSelector);
+  const counter = useAppSelector(selectCounter);
   const dispatch = useAppDispatch();
 
   return (
     <MainScreenLayout>
       <View style={styles.demoCard}>
         <Button
-          onPress={() => dispatch(addToCounter(5))}
+          onPress={() => dispatch(incrementCounterBy(5))}
           title="Increment counter by 5"
         />
         <Button
-          onPress={() => dispatch(substractFromCounter(15))}
+          onPress={() => dispatch(decrementCounterBy(15))}
           title="Decrement counter by 15"
         />
         <Text style={styles.demoText}>Counter: {counter}</Text>
