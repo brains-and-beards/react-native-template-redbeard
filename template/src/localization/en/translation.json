@@ -1,0 +1,7 @@
+{
+  "demoScreen": {
+    "incrementButton": "Increment counter by 5",
+    "decrementButton": "Decrement counter by 15",
+    "counter": "Counter:"
+  }
+}

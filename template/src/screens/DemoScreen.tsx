@@ -18,6 +18,7 @@ import React from 'react';
 import {useEffect} from 'react';
 import {ActivityIndicator, Image} from 'react-native';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 type DemoScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -36,6 +37,7 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
   const counter = useAppSelector(selectCounter);
   const comicRequest = useAppSelector(selectComic);
   const dispatch = useAppDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     dispatch(getLatestComicAsync());
@@ -49,13 +51,15 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
       <View style={styles.demoCard}>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
-          title="Increment counter by 5"
+          title={t('demoScreen.incrementButton')}
         />
         <Button
           onPress={() => dispatch(decrementCounterBy(15))}
-          title="Decrement counter by 15"
+          title={t('demoScreen.decrementButton')}
         />
-        <Text style={styles.demoText}>Counter: {counter}</Text>
+        <Text style={styles.demoText}>
+          {`${t('demoScreen.counter')} ${counter}`}
+        </Text>
       </View>
       <View style={styles.demoCard}>
         {comicData ? (
