@@ -46,6 +46,7 @@
       "@hoc/*": ["./hoc/*"],
       "@hooks/*": ["./hooks/*"],
       "@localization/*": ["./localization/*"],
+      "@models/*": ["./models/*"],
       "@navigation/*": ["./navigation/*"],
       "@redux/*": ["./redux/*"],
       "@screens/*": ["./screens/*"],

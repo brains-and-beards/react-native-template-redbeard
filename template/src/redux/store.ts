@@ -1,11 +1,19 @@
 import {configureStore} from '@reduxjs/toolkit';
-import demoScreenReducer from './demoScreen/slice';
+import createSagaMiddleware from 'redux-saga';
+import demoReducer from '@screens/demoSlice';
+import rootSaga from './rootSaga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
-    demoScreen: demoScreenReducer,
+    demo: demoReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({thunk: false}).concat(sagaMiddleware),
 });
+
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 

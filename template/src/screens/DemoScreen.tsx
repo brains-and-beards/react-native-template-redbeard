@@ -2,16 +2,21 @@ import MainScreenLayout from '@components/layouts/MainScreenLayout';
 import Colors from '@config/ui/colors';
 import useAppDispatch from '@hooks/useAppDispatch';
 import useAppSelector from '@hooks/useAppSelector';
+import {hasData} from '@models/RemoteData';
 import {RootStackParamList} from '@navigation/navigators/RootStackNavigator';
 import Routes from '@navigation/routes';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {
   decrementCounterBy,
+  getLatestComicAsync,
   incrementCounterBy,
+  selectComic,
   selectCounter,
-} from '@redux/demoScreen/slice';
+} from './demoSlice';
 import React from 'react';
+import {useEffect} from 'react';
+import {ActivityIndicator, Image} from 'react-native';
 import {Button, StyleSheet, Text, View} from 'react-native';
 
 type DemoScreenNavigationProp = StackNavigationProp<
@@ -29,7 +34,15 @@ interface DemoScreenProps {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DemoScreen = ({navigation, route}: DemoScreenProps) => {
   const counter = useAppSelector(selectCounter);
+  const comicRequest = useAppSelector(selectComic);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getLatestComicAsync());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const comicData = hasData(comicRequest) ? comicRequest.data : null;
 
   return (
     <MainScreenLayout>
@@ -44,6 +57,21 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
         />
         <Text style={styles.demoText}>Counter: {counter}</Text>
       </View>
+      <View style={styles.demoCard}>
+        {comicData ? (
+          <>
+            <Text style={styles.demoText}>{comicData.title}</Text>
+            <Image
+              source={{uri: comicData.imageUrl}}
+              style={styles.demoImage}
+              resizeMode="contain"
+            />
+            <Text style={styles.demoText}>{comicData.description}</Text>
+          </>
+        ) : (
+          <ActivityIndicator />
+        )}
+      </View>
     </MainScreenLayout>
   );
 };
@@ -51,7 +79,7 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
 const styles = StyleSheet.create({
   demoCard: {
     margin: 10,
-    padding: 50,
+    padding: 20,
     borderRadius: 2,
     elevation: 5,
     shadowOffset: {
@@ -66,6 +94,9 @@ const styles = StyleSheet.create({
   demoText: {
     color: Colors.onSurface,
     textAlign: 'center',
+  },
+  demoImage: {
+    height: 350,
   },
 });
 
