@@ -1,6 +1,6 @@
 import {all} from 'redux-saga/effects';
-import {watchFetchLatestComic} from './demoScreen/saga';
+import {watchFetchLatestComicSaga} from '@screens/demoSlice';
 
 export default function* rootSaga() {
-  yield all([watchFetchLatestComic()]);
+  yield all([watchFetchLatestComicSaga()]);
 }

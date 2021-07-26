@@ -13,7 +13,7 @@ import {
   incrementCounterBy,
   selectComic,
   selectCounter,
-} from '@redux/demoScreen/slice';
+} from './demoSlice';
 import React from 'react';
 import {useEffect} from 'react';
 import {ActivityIndicator, Image} from 'react-native';

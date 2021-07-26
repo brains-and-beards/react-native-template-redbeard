@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '@redux/store';
-import {Comic} from '@models/ComicModel';
+import {Comic, parseComic} from '@models/ComicModel';
 import {
   Failure,
   hasData,
@@ -10,19 +10,38 @@ import {
   RemoteData,
   Success,
 } from '@models/RemoteData';
+import {put, takeEvery} from 'redux-saga/effects';
+import {makeApiCall, SuccessResponse} from '@api/apiSaga';
+import {getLatestComic} from '@api/comics';
 
-interface DemoScreenState {
+function* fetchLatestComic(): Generator {
+  const response = yield makeApiCall(getLatestComic, {
+    onError: getLatestComicAsyncFailure,
+  });
+
+  if (response) {
+    const {json} = response as SuccessResponse;
+    const comic = parseComic(json);
+    yield put(getLatestComicAsyncSuccess(comic));
+  }
+}
+
+export function* watchFetchLatestComicSaga() {
+  yield takeEvery(getLatestComicAsync, fetchLatestComic);
+}
+
+interface DemoState {
   counter: number;
   comic: RemoteData<Comic, Error['message']>;
 }
 
-const initialState: DemoScreenState = {
+const initialState: DemoState = {
   counter: 420,
   comic: NotRequested,
 };
 
-export const demoScreenSlice = createSlice({
-  name: 'demoScreen',
+export const demoSlice = createSlice({
+  name: 'demo',
   initialState,
   reducers: {
     incrementCounterBy: (state, action: PayloadAction<number>) => {
@@ -48,17 +67,16 @@ export const demoScreenSlice = createSlice({
   },
 });
 
-// TODO: remove unnecesary exports if saga integrated into a slice
 export const {
   incrementCounterBy,
   decrementCounterBy,
   getLatestComicAsync,
   getLatestComicAsyncSuccess,
   getLatestComicAsyncFailure,
-} = demoScreenSlice.actions;
+} = demoSlice.actions;
 
-export const selectCounter = (state: RootState) => state.demoScreen.counter;
+export const selectCounter = (state: RootState) => state.demo.counter;
 
-export const selectComic = (state: RootState) => state.demoScreen.comic;
+export const selectComic = (state: RootState) => state.demo.comic;
 
-export default demoScreenSlice.reducer;
+export default demoSlice.reducer;
