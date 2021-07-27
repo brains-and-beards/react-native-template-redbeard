@@ -1,57 +1,38 @@
-# TODO
+# React Native Template Redbeard
+
+Based on [react-native-template-typescript](https://github.com/react-native-community/react-native-template-typescript)  
+Includes preconfigured file structure and packages.
+
+## Usage
+
+```sh
+npx react-native init MyProject --template https://github.com/brains-and-beards/react-native-template-redbeard --title AppName --directory my-project
+```
+
+Project inits with some demo usage files.  
+After init feel free to remove these:
+
+- `src/api/comics.ts`
+- `src/model/ComicModel.ts`
+- `src/screens/DemoScreen.ts`
+- `src/screens/demoSlice.ts`
 
 ## File tree
 
-#### @types/
-
-Declaration files (d.ts)
-
-#### api/
-
-Anything related to external communication.
-
-#### assets/
-
-Static files like images, sounds, fonts(.otf, .ttf)
-
-- assets/fonts - fonts (_.otf, _.ttf)
-- assets/images/pressable - .svg, .png images used for pressable components
-
-#### components/
-
-Reusable components
-
-#### config/
-
-Things we can manipulate to adjust the app behaviour
-
-#### hoc/
-
-Reusable higher order components
-
-#### hooks/
-
-Reusable hooks
-
-#### localization/
-
-Things related to user locale
-
-#### navigation/
-
-Navigators, routes
-
-#### redux/
-
-Actions, reducers, sagas
-
-#### screens/
-
-App screens
-
-#### utils/
-
-Universal helpers
+- `@types/` - Declaration files (d.ts)
+- `api/` - Anything related to external communication.
+- `assets/` - Static files like images, sounds, fonts(.otf, .ttf)
+  - assets/fonts - fonts (_.otf, _.ttf)
+  - assets/images/pressable - _.svg, _.png images used for pressable components
+- `components/` - Reusable components
+- `config/` - Things we can manipulate to adjust the app behaviour. Colors palette, timings, etc.
+- `hoc/` - Reusable higher order components
+- `hooks/` - Reusable hooks
+- `localization/` - Things related to user locale
+- `navigation/` - Navigators, routes
+- `redux/` - Actions, reducers, sagas
+- `screens/` - App screens
+- `utils/` - Universal helpers
 
 <s>
 # :space_invader: React Native Template TypeScript
