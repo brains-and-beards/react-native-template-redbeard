@@ -57,3 +57,9 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# react-native-config
+.env
+.env.development
+.env.staging
+.env.production
