@@ -8,3 +8,7 @@ jest.mock('react-native-reanimated', () => {
   return Reanimated;
 });
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('react-native-splash-screen', () => ({
+  show: jest.fn(),
+  hide: jest.fn(),
+}));
