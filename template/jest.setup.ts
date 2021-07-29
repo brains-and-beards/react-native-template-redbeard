@@ -1,5 +1,8 @@
 import 'react-native-gesture-handler/jestSetup';
 
+// react-native-config-node: read env variables from .env.example
+process.env.NODE_ENV = 'example';
+
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');
 
