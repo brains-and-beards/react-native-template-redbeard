@@ -1,4 +1,4 @@
-const API_URL = 'https://xkcd.com'; // TODO replace with .env variable
+import Config from 'react-native-config';
 
 interface RequestParams extends RequestInit {
   path: string;
@@ -7,7 +7,7 @@ interface RequestParams extends RequestInit {
 export const makeRequest = async (params: RequestParams) => {
   const {path, ...restParams} = params;
   try {
-    const response = await fetch(`${API_URL}/${path}`, {
+    const response = await fetch(`${Config.API_URL}/${path}`, {
       ...restParams,
       headers: {
         Accept: 'application/json',
