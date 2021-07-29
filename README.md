@@ -36,7 +36,8 @@ After init feel free to remove these:
 
 ## Environments
 
-There are three different environments preconfigured with [react-native-config](https://github.com/luggit/react-native-config). Use `.env.[development|staging|production]` files to place things like `API_URL`s etc.
+There are three different environments preconfigured with [react-native-config](https://github.com/luggit/react-native-config). Use `.env.[development|staging|production]` files to place things like `API_URL`s etc.  
+As these files are included in gitigone, use [.env.example](/template/.env.example) file to share what variables you expect others to have.
 
 #### Android
 
