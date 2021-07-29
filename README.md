@@ -34,6 +34,23 @@ After init feel free to remove these:
 - `screens/` - App screens
 - `utils/` - Universal helpers
 
+## Environments
+
+There are three different environments preconfigured with [react-native-config](https://github.com/luggit/react-native-config). Use `.env.[development|staging|production]` files to place things like `API_URL`s etc.
+
+#### Android
+
+Use `yarn android:[dev|stg|prod]` to run the app in debug mode and `[devRelease|stgRelease|prodRelease]` for release variant.
+Each environment command will generate and run separate app. Non-production apps gonna have name and package suffixes to make it distinct and possible to install in parallel.
+
+#### iOS
+
+There are 3 additional schemes for each environment to keep it simple. You can use them via `yarn ios:[dev|stg|prod]`.
+Variables are also available in `Info.plist` e.g. `$(MY_ENV_VARIABLE)`.
+Unlike on android, each app install will override the previous one, independently of selected env.
+
+Base setup can be further extended with additional `build configurations`, `build schemes` / `targets` when you find the need for it or you have setup the apps in appstore connect. (Preasumbly great guides how to do it: [link1](https://blog.logicwind.com/manage-multiple-target-variant-with-react-native-projects/), [link2](https://medium.com/@pablosanchezdev/managing-different-environments-and-configurations-in-xcode-for-ios-projects-6c70d46e1b22))
+
 <s>
 # :space_invader: React Native Template TypeScript
 
