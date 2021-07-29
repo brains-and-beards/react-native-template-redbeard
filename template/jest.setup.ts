@@ -19,3 +19,7 @@ jest.mock('react-i18next', () => ({
     };
   },
 }));
+jest.mock('react-native-splash-screen', () => ({
+  show: jest.fn(),
+  hide: jest.fn(),
+}));
