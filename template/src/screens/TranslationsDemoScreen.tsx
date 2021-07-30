@@ -24,6 +24,29 @@ const TranslationsDemoScreen = () => {
       </DemoCard>
       <DemoCard>
         <Text style={styles.text}>
+          {t('translationsDemoScreen.objectsAndArrays.objectsAndArrays')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.objectsAndArrays.returnObjectsDesc')}
+        </Text>
+        <Text style={styles.text}>
+          {JSON.stringify(
+            t('translationsDemoScreen.objectsAndArrays.fruitList', {
+              returnObjects: true,
+            }),
+          )}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.objectsAndArrays.joinArraysDesc')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.objectsAndArrays.fruitList', {
+            joinArrays: '\n',
+          })}
+        </Text>
+      </DemoCard>
+      <DemoCard>
+        <Text style={styles.text}>
           {t('translationsDemoScreen.singularPlural.singularPlural')}
         </Text>
         <Text style={styles.text}>

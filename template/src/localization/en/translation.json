@@ -7,6 +7,12 @@
   },
   "translationsDemoScreen": {
     "languageIsSetTo": "Language is set to '{{currentLanguage}}'",
+    "objectsAndArrays": {
+      "objectsAndArrays": "Objects and Arrays",
+      "returnObjectsDesc": "\n\nYou can tell t() to return arrays/objects instead of strings:\n",
+      "fruitList": ["apple", "banana", "raspberry"],
+      "joinArraysDesc": "\n\nor join arrays in simple way:\n"
+    },
     "singularPlural": {
       "singularPlural": "Singular / Plural",
       "useCountOptionDesc": "\n\nUse t('key', {count}) with key_plural:\n",

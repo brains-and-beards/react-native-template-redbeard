@@ -1,6 +1,12 @@
 {
   "translationsDemoScreen": {
     "languageIsSetTo": "Język jest ustawiony na '{{currentLanguage}}'",
+    "objectsAndArrays": {
+      "objectsAndArrays": "Obiekty i Arraye",
+      "returnObjectsDesc": "\n\nMożesz sprawić że t() zwróci array/objekt zamiast stringu:\n",
+      "fruitList": ["jabłko", "banan", "malina"],
+      "joinArraysDesc": "\n\nalbo łączyć arraye w prosty sposób:\n"
+    },
     "singularPlural": {
       "singularPlural": "Liczba pojedyncza / mnoga",
       "useCountOptionDesc": "\n\nUżywaj t('key', {count}) z key_plural:\n",
