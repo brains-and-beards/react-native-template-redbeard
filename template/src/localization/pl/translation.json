@@ -13,7 +13,7 @@
       "item_0": "{{count}} rzecz",
       "item_1": "{{count}} rzeczy",
       "item_2": "{{count}} rzeczy",
-      "multiplePluralsDesc": "\nUżywaj <bold>key_index</bold> język ma więcej niż 1 formę liczby mnogiej:",
+      "multiplePluralsDesc": "\nUżywaj <bold>key_index</bold> jeśli język ma więcej niż 1 formę liczby mnogiej:",
       "plate_0": "{{count}} talerz",
       "plate_1": "{{count}} talerze",
       "plate_2": "{{count}} talerzy",
