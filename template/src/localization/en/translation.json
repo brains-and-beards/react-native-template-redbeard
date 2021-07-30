@@ -8,24 +8,24 @@
   "translationsDemoScreen": {
     "languageIsSetTo": "Language is set to '{{currentLanguage}}'",
     "objectsAndArrays": {
-      "objectsAndArrays": "Objects and Arrays\n",
+      "objectsAndArrays": "Objects and Arrays",
       "returnObjectsDesc": "You can tell t() to return arrays/objects instead of strings:",
       "fruitList": ["apple", "banana", "raspberry"],
-      "joinArraysDesc": "\nor join arrays in simple way:"
+      "joinArraysDesc": "or join arrays in simple way:"
     },
     "singularPlural": {
-      "singularPlural": "Singular / Plural\n",
+      "singularPlural": "Singular / Plural",
       "useCountOptionDesc": "Use <bold>t('key', {count})</bold> with <bold>key_plural</bold>:",
       "item": "{{count}} item",
       "item_plural": "{{count}} items",
-      "multiplePluralsDesc": "\nUse <bold>key_index</bold> if language has more than 1 plural form:",
+      "multiplePluralsDesc": "Use <bold>key_index</bold> if language has more than 1 plural form:",
       "plate": "{{count}} plate",
       "plate_plural": "{{count}} plates",
-      "intervalPluralDesc": "\nInstall i18next-intervalplural-postprocessor, if you need to define ranges like:",
+      "intervalPluralDesc": "Install i18next-intervalplural-postprocessor, if you need to define ranges like:",
       "intervalPluralExample": "(2-7) - a few items\n(7-inf) - a lot of items"
     },
     "context": {
-      "context": "Context\n",
+      "context": "Context",
       "useContextOptionDesc": "Use <bold>t('key', {context})</bold> with <bold>key_context</bold> to do something like this:",
       "findAPerfectFriend": "Find a perfect friend",
       "findAPerfectFriend_male": "Find a perfect boyfriend",
