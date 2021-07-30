@@ -14,7 +14,7 @@ After init feel free to remove these:
 
 - `src/api/comics.ts`
 - `src/components/surfaces/DemoCard.tsx`
-- `src/localization/de`
+- `src/localization/pl`
 - `src/model/ComicModel.ts`
 - `src/screens/DemoScreen.tsx`
 - `src/screens/TranslationsDemoScreen.tsx`

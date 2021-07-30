@@ -22,10 +22,39 @@ const TranslationsDemoScreen = () => {
           })}
         </Text>
       </DemoCard>
+      <DemoCard>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.singularPlural')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.useCountOptionDesc')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.item', {count: 1})}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.item', {count: 22})}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.multiplePluralsDesc')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.plate', {count: 1})}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.plate', {count: 4})}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.plate', {count: 25})}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.intervalPluralDesc', {count: 25})}
+        </Text>
+      </DemoCard>
       <DemoCard style={styles.row}>
         <Button
-          onPress={() => switchLaguage('de')}
-          title={t('translationsDemoScreen.switchToGerman', {lng: 'de'})}
+          onPress={() => switchLaguage('pl')}
+          title={t('translationsDemoScreen.switchToPolish', {lng: 'pl'})}
         />
         <Button
           onPress={() => switchLaguage('en')}
@@ -42,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   text: {
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
     color: Colors.onSurface,
   },
