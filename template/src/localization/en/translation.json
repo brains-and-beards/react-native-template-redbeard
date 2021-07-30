@@ -15,17 +15,17 @@
     },
     "singularPlural": {
       "singularPlural": "Singular / Plural",
-      "useCountOptionDesc": "\n\nUse t('key', {count}) with key_plural:\n",
+      "useCountOptionDesc": "\n\nUse <bold>t('key', {count})</bold> with <bold>key_plural</bold>:\n",
       "item": "{{count}} item",
       "item_plural": "{{count}} items",
-      "multiplePluralsDesc": "\n\nUse key_index if language has more than 1 plural form:\n",
+      "multiplePluralsDesc": "\n\nUse <bold>key_index</bold> if language has more than 1 plural form:\n",
       "plate": "{{count}} plate",
       "plate_plural": "{{count}} plates",
       "intervalPluralDesc": "\n\nInstall i18next-intervalplural-postprocessor, if you need to define ranges like:\n(2-7) - a few items\n(7-inf) - a lot of items"
     },
     "context": {
       "context": "Context",
-      "useContextOptionDesc": "\n\nUse t('key', {context}) with key_context to do something like this:\n",
+      "useContextOptionDesc": "\n\nUse <bold>t('key', {context})</bold> with <bold>key_context</bold> to do something like this:\n",
       "findAPerfectFriend": "Find a perfect friend",
       "findAPerfectFriend_male": "Find a perfect boyfriend",
       "findAPerfectFriend_female": "Find a perfect girlfriend"

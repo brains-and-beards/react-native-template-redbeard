@@ -1,6 +1,6 @@
 import MainScreenLayout from '@components/layouts/MainScreenLayout';
 import React from 'react';
-import {useTranslation} from 'react-i18next';
+import {Trans, useTranslation} from 'react-i18next';
 import {Button, StyleSheet, Text} from 'react-native';
 import {resources} from '@localization/i18n';
 import Colors from '@config/ui/colors';
@@ -50,7 +50,10 @@ const TranslationsDemoScreen = () => {
           {t('translationsDemoScreen.singularPlural.singularPlural')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.singularPlural.useCountOptionDesc')}
+          <Trans
+            i18nKey="translationsDemoScreen.singularPlural.useCountOptionDesc"
+            components={{bold: <Text style={styles.boldText} />}}
+          />
         </Text>
         <Text style={styles.text}>
           {t('translationsDemoScreen.singularPlural.item', {count: 1})}
@@ -59,7 +62,10 @@ const TranslationsDemoScreen = () => {
           {t('translationsDemoScreen.singularPlural.item', {count: 22})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.singularPlural.multiplePluralsDesc')}
+          <Trans
+            i18nKey="translationsDemoScreen.singularPlural.multiplePluralsDesc"
+            components={{bold: <Text style={styles.boldText} />}}
+          />
         </Text>
         <Text style={styles.text}>
           {t('translationsDemoScreen.singularPlural.plate', {count: 1})}
@@ -79,7 +85,10 @@ const TranslationsDemoScreen = () => {
           {t('translationsDemoScreen.context.context')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.context.useContextOptionDesc')}
+          <Trans
+            i18nKey="translationsDemoScreen.context.useContextOptionDesc"
+            components={{bold: <Text style={styles.boldText} />}}
+          />
         </Text>
         <Text style={styles.text}>
           {t('translationsDemoScreen.context.findAPerfectFriend')}
@@ -118,6 +127,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     color: Colors.onSurface,
+  },
+  boldText: {
+    fontWeight: '700',
   },
 });
 

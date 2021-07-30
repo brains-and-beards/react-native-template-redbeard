@@ -9,11 +9,11 @@
     },
     "singularPlural": {
       "singularPlural": "Liczba pojedyncza / mnoga",
-      "useCountOptionDesc": "\n\nUżywaj t('key', {count}) z key_plural:\n",
+      "useCountOptionDesc": "\n\nUżywaj <bold>t('key', {count})</bold> z <bold>key_plural</bold>:\n",
       "item_0": "{{count}} rzecz",
       "item_1": "{{count}} rzeczy",
       "item_2": "{{count}} rzeczy",
-      "multiplePluralsDesc": "\n\nUżywaj key_index język ma więcej niż 1 formę liczby mnogiej:\n",
+      "multiplePluralsDesc": "\n\nUżywaj <bold>key_index</bold> język ma więcej niż 1 formę liczby mnogiej:\n",
       "plate_0": "{{count}} talerz",
       "plate_1": "{{count}} talerze",
       "plate_2": "{{count}} talerzy",
@@ -21,7 +21,7 @@
     },
     "context": {
       "context": "Kontekst",
-      "useContextOptionDesc": "\n\nUżywaj t('key', {context}) z key_context by zrobić coś takiego:\n",
+      "useContextOptionDesc": "\n\nUżywaj <bold>t('key', {context})</bold> z <bold>key_context</bold> by zrobić coś takiego:\n",
       "findAPerfectFriend": "Znajdź perfekcyjnego przyjaciela",
       "findAPerfectFriend_male": "Znajdź perfekcyjnego chłopaka",
       "findAPerfectFriend_female": "Znajdź perfekcyjną dziewczynę"
