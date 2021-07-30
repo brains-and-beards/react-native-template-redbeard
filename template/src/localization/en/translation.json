@@ -2,6 +2,12 @@
   "demoScreen": {
     "incrementButton": "Increment counter by 5",
     "decrementButton": "Decrement counter by 15",
-    "counter": "Counter:"
+    "counter": "Counter:",
+    "goToTranslationsDemo": "Go to translations demo"
+  },
+  "translationsDemoScreen": {
+    "languageIsSetTo": "Language is set to '{{currentLanguage}}'",
+    "switchToGerman": "Switch to 🇩🇪",
+    "switchToEnglish": "Switch to 🇺🇸"
   }
 }

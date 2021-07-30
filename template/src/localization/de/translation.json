@@ -1,0 +1,7 @@
+{
+  "translationsDemoScreen": {
+    "languageIsSetTo": "Sprache ist auf '{{currentLanguage}}'",
+    "switchToGerman": "Wechseln zu 🇩🇪",
+    "switchToEnglish": "Wechseln zu 🇺🇸"
+  }
+}

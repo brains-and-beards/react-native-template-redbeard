@@ -17,8 +17,9 @@ import {
 import React from 'react';
 import {useEffect} from 'react';
 import {ActivityIndicator, Image} from 'react-native';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import DemoCard from '@components/surfaces/DemoCard';
 
 type DemoScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -32,8 +33,7 @@ interface DemoScreenProps {
   route: DemoScreenRouteProp;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const DemoScreen = ({navigation, route}: DemoScreenProps) => {
+const DemoScreen = ({navigation}: DemoScreenProps) => {
   const counter = useAppSelector(selectCounter);
   const comicRequest = useAppSelector(selectComic);
   const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
 
   return (
     <MainScreenLayout>
-      <View style={styles.demoCard}>
+      <DemoCard>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
           title={t('demoScreen.incrementButton')}
@@ -60,8 +60,8 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
         <Text style={styles.demoText}>
           {`${t('demoScreen.counter')} ${counter}`}
         </Text>
-      </View>
-      <View style={styles.demoCard}>
+      </DemoCard>
+      <DemoCard>
         {comicData ? (
           <>
             <Text style={styles.demoText}>{comicData.title}</Text>
@@ -75,26 +75,18 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
         ) : (
           <ActivityIndicator />
         )}
-      </View>
+      </DemoCard>
+      <DemoCard>
+        <Button
+          onPress={() => navigation.navigate(Routes.TRANSLATIONS_DEMO_SCREEN)}
+          title={t('demoScreen.goToTranslationsDemo')}
+        />
+      </DemoCard>
     </MainScreenLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  demoCard: {
-    margin: 10,
-    padding: 20,
-    borderRadius: 2,
-    elevation: 5,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    shadowColor: Colors.palette.BLACK,
-    backgroundColor: Colors.surface,
-  },
   demoText: {
     color: Colors.onSurface,
     textAlign: 'center',
