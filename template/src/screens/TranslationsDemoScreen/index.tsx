@@ -1,10 +1,11 @@
 import MainScreenLayout from '@components/layouts/MainScreenLayout';
 import React from 'react';
 import {Trans, useTranslation} from 'react-i18next';
-import {Button, StyleSheet, Text} from 'react-native';
+import {Button, StyleSheet} from 'react-native';
 import {resources} from '@localization/i18n';
 import Colors from '@config/ui/colors';
 import DemoCard from '@components/surfaces/DemoCard';
+import {BoldText, DescText, ExampleText, TitleText} from './StyledTexts';
 
 const TranslationsDemoScreen = () => {
   const {t, i18n} = useTranslation();
@@ -16,93 +17,94 @@ const TranslationsDemoScreen = () => {
   return (
     <MainScreenLayout>
       <DemoCard>
-        <Text style={styles.text}>
+        <TitleText>
           {t('translationsDemoScreen.languageIsSetTo', {
             currentLanguage: i18n.language,
           })}
-        </Text>
+        </TitleText>
       </DemoCard>
       <DemoCard>
-        <Text style={styles.text}>
+        <TitleText>
           {t('translationsDemoScreen.objectsAndArrays.objectsAndArrays')}
-        </Text>
-        <Text style={styles.text}>
+        </TitleText>
+        <DescText>
           {t('translationsDemoScreen.objectsAndArrays.returnObjectsDesc')}
-        </Text>
-        <Text style={styles.text}>
+        </DescText>
+        <ExampleText>
           {JSON.stringify(
             t('translationsDemoScreen.objectsAndArrays.fruitList', {
               returnObjects: true,
             }),
           )}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <DescText>
           {t('translationsDemoScreen.objectsAndArrays.joinArraysDesc')}
-        </Text>
-        <Text style={styles.text}>
+        </DescText>
+        <ExampleText>
           {t('translationsDemoScreen.objectsAndArrays.fruitList', {
             joinArrays: '\n',
           })}
-        </Text>
+        </ExampleText>
       </DemoCard>
       <DemoCard>
-        <Text style={styles.text}>
+        <TitleText>
           {t('translationsDemoScreen.singularPlural.singularPlural')}
-        </Text>
-        <Text style={styles.text}>
+        </TitleText>
+        <DescText>
           <Trans
             i18nKey="translationsDemoScreen.singularPlural.useCountOptionDesc"
-            components={{bold: <Text style={styles.boldText} />}}
+            components={{bold: <BoldText />}}
           />
-        </Text>
-        <Text style={styles.text}>
+        </DescText>
+        <ExampleText>
           {t('translationsDemoScreen.singularPlural.item', {count: 1})}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <ExampleText>
           {t('translationsDemoScreen.singularPlural.item', {count: 22})}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <DescText>
           <Trans
             i18nKey="translationsDemoScreen.singularPlural.multiplePluralsDesc"
-            components={{bold: <Text style={styles.boldText} />}}
+            components={{bold: <BoldText />}}
           />
-        </Text>
-        <Text style={styles.text}>
+        </DescText>
+        <ExampleText>
           {t('translationsDemoScreen.singularPlural.plate', {count: 1})}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <ExampleText>
           {t('translationsDemoScreen.singularPlural.plate', {count: 4})}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <ExampleText>
           {t('translationsDemoScreen.singularPlural.plate', {count: 25})}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <DescText>
           {t('translationsDemoScreen.singularPlural.intervalPluralDesc')}
-        </Text>
+        </DescText>
+        <ExampleText>
+          {t('translationsDemoScreen.singularPlural.intervalPluralExample')}
+        </ExampleText>
       </DemoCard>
       <DemoCard>
-        <Text style={styles.text}>
-          {t('translationsDemoScreen.context.context')}
-        </Text>
-        <Text style={styles.text}>
+        <TitleText>{t('translationsDemoScreen.context.context')}</TitleText>
+        <DescText>
           <Trans
             i18nKey="translationsDemoScreen.context.useContextOptionDesc"
-            components={{bold: <Text style={styles.boldText} />}}
+            components={{bold: <BoldText />}}
           />
-        </Text>
-        <Text style={styles.text}>
+        </DescText>
+        <ExampleText>
           {t('translationsDemoScreen.context.findAPerfectFriend')}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <ExampleText>
           {t('translationsDemoScreen.context.findAPerfectFriend', {
             context: 'male',
           })}
-        </Text>
-        <Text style={styles.text}>
+        </ExampleText>
+        <ExampleText>
           {t('translationsDemoScreen.context.findAPerfectFriend', {
             context: 'female',
           })}
-        </Text>
+        </ExampleText>
       </DemoCard>
       <DemoCard style={styles.row}>
         <Button
