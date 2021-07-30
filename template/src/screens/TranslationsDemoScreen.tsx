@@ -1,7 +1,7 @@
 import MainScreenLayout from '@components/layouts/MainScreenLayout';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text} from 'react-native';
 import {resources} from '@localization/i18n';
 import Colors from '@config/ui/colors';
 import DemoCard from '@components/surfaces/DemoCard';
@@ -24,46 +24,52 @@ const TranslationsDemoScreen = () => {
       </DemoCard>
       <DemoCard>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.singularPlural')}
+          {t('translationsDemoScreen.singularPlural.singularPlural')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.useCountOptionDesc')}
+          {t('translationsDemoScreen.singularPlural.useCountOptionDesc')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.item', {count: 1})}
+          {t('translationsDemoScreen.singularPlural.item', {count: 1})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.item', {count: 22})}
+          {t('translationsDemoScreen.singularPlural.item', {count: 22})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.multiplePluralsDesc')}
+          {t('translationsDemoScreen.singularPlural.multiplePluralsDesc')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.plate', {count: 1})}
+          {t('translationsDemoScreen.singularPlural.plate', {count: 1})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.plate', {count: 4})}
+          {t('translationsDemoScreen.singularPlural.plate', {count: 4})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.plate', {count: 25})}
+          {t('translationsDemoScreen.singularPlural.plate', {count: 25})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.intervalPluralDesc')}
+          {t('translationsDemoScreen.singularPlural.intervalPluralDesc')}
         </Text>
       </DemoCard>
       <DemoCard>
-        <Text style={styles.text}>{t('translationsDemoScreen.context')}</Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.useContextOptionDesc')}
+          {t('translationsDemoScreen.context.context')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.findAPerfectFriend')}
+          {t('translationsDemoScreen.context.useContextOptionDesc')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.findAPerfectFriend', {context: 'male'})}
+          {t('translationsDemoScreen.context.findAPerfectFriend')}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.findAPerfectFriend', {context: 'female'})}
+          {t('translationsDemoScreen.context.findAPerfectFriend', {
+            context: 'male',
+          })}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.context.findAPerfectFriend', {
+            context: 'female',
+          })}
         </Text>
       </DemoCard>
       <DemoCard style={styles.row}>
