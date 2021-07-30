@@ -48,7 +48,22 @@ const TranslationsDemoScreen = () => {
           {t('translationsDemoScreen.plate', {count: 25})}
         </Text>
         <Text style={styles.text}>
-          {t('translationsDemoScreen.intervalPluralDesc', {count: 25})}
+          {t('translationsDemoScreen.intervalPluralDesc')}
+        </Text>
+      </DemoCard>
+      <DemoCard>
+        <Text style={styles.text}>{t('translationsDemoScreen.context')}</Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.useContextOptionDesc')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.findAPerfectFriend')}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.findAPerfectFriend', {context: 'male'})}
+        </Text>
+        <Text style={styles.text}>
+          {t('translationsDemoScreen.findAPerfectFriend', {context: 'female'})}
         </Text>
       </DemoCard>
       <DemoCard style={styles.row}>

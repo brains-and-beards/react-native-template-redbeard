@@ -11,6 +11,11 @@
     "plate_1": "{{count}} talerze",
     "plate_2": "{{count}} talerzy",
     "intervalPluralDesc": "\n\nZainstaluj i18next-intervalplural-postprocessor, jeśli potrzebujesz definiować zakresy w ten sposób:\n(2-7) - kilka rzeczy\n(7-inf) - dużo rzeczy",
+    "context": "Kontekst",
+    "useContextOptionDesc": "\n\nUżywaj t('key', {context}) z key_context by zrobić coś takiego:\n",
+    "findAPerfectFriend": "Znajdź perfekcyjnego przyjaciela",
+    "findAPerfectFriend_male": "Znajdź perfekcyjnego chłopaka",
+    "findAPerfectFriend_female": "Znajdź perfekcyjną dziewczynę",
     "switchToPolish": "Przełącz na 🇵🇱",
     "switchToEnglish": "Przełącz na 🇺🇸"
   }
