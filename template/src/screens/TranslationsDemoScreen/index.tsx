@@ -9,6 +9,7 @@ import {TitleText} from './StyledTexts';
 import ObjectsArraysCard from './ObjectsArraysCard';
 import SingularPluralCard from './SingularPluralCard';
 import ContextCard from './ContextCard';
+import FormattingCard from './FormattingCard';
 
 const TranslationsDemoScreen = () => {
   const {t, i18n} = useTranslation();
@@ -27,6 +28,7 @@ const TranslationsDemoScreen = () => {
         </TitleText>
       </DemoCard>
       <ObjectsArraysCard />
+      <FormattingCard />
       <SingularPluralCard />
       <ContextCard />
       <DemoCard style={styles.row}>

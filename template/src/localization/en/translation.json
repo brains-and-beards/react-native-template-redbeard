@@ -13,6 +13,13 @@
       "fruitList": ["apple", "banana", "raspberry"],
       "joinArraysDesc": "or join arrays in simple way:"
     },
+    "formatting": {
+      "formatting": "Formatting",
+      "description": "You can use i18n to format dates / prices / numbers like so:",
+      "date": "Date: {{date, MM/DD/YYYY}}",
+      "price": "Price: {{value, currency}}",
+      "number": "Number: {{value, number}}"
+    },
     "singularPlural": {
       "singularPlural": "Singular / Plural",
       "useCountOptionDesc": "Use <bold>t('key', {count})</bold> with <bold>key_plural</bold>:",

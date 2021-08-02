@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   descText: {
+    marginTop: 15,
     fontSize: 15,
     color: Colors.onSurface,
   },

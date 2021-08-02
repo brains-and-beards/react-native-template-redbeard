@@ -7,6 +7,13 @@
       "fruitList": ["jabłko", "banan", "malina"],
       "joinArraysDesc": "albo łączyć arraye w prosty sposób:"
     },
+    "formatting": {
+      "formatting": "Formatowanie",
+      "description": "Możesz używać i18n do formatowania dat / cen / liczb w ten sposób:",
+      "date": "Data: {{date, DD-MM-YYYY}}",
+      "price": "Cena: {{value, currency}}",
+      "number": "Liczba: {{value, number}}"
+    },
     "singularPlural": {
       "singularPlural": "Liczba pojedyncza / mnoga",
       "useCountOptionDesc": "Używaj <bold>t('key', {count})</bold> z <bold>key_plural</bold>:",
@@ -27,7 +34,6 @@
       "findAPerfectFriend_male": "Znajdź perfekcyjnego chłopaka",
       "findAPerfectFriend_female": "Znajdź perfekcyjną dziewczynę"
     },
-    "switchToPolish": "Przełącz na 🇵🇱",
-    "switchToEnglish": "Przełącz na 🇺🇸"
+    "switchToPolish": "Przełącz na 🇵🇱"
   }
 }
