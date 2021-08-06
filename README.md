@@ -13,8 +13,11 @@ Project inits with some demo usage files.
 After init feel free to remove these:
 
 - `src/api/comics.ts`
+- `src/components/surfaces/DemoCard.tsx`
+- `src/localization/pl`
 - `src/model/ComicModel.ts`
-- `src/screens/DemoScreen.ts`
+- `src/screens/DemoScreen.tsx`
+- `src/screens/TranslationsDemoScreen`
 - `src/screens/demoSlice.ts`
 
 ## File tree
