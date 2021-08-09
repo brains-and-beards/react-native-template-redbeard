@@ -50,8 +50,10 @@ const DemoScreen = ({navigation}: DemoScreenProps) => {
     <MainScreenLayout>
       <DemoCard>
         <Text style={styles.demoText}>
-          {/* @ts-ignore */}
-          Hermes Enabled?: {global.HermesInternal ? 'YES' : 'NO'}
+          {t('demoScreen.hermesEnabled', {
+            // @ts-ignore
+            enabled: global.HermesInternal ? 'YES' : 'NO',
+          })}
         </Text>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
