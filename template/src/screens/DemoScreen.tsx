@@ -47,6 +47,10 @@ const DemoScreen = ({navigation, route}: DemoScreenProps) => {
   return (
     <MainScreenLayout>
       <View style={styles.demoCard}>
+        <Text style={styles.demoText}>
+          {/* @ts-ignore */}
+          Hermes Enabled?: {global.HermesInternal ? 'YES' : 'NO'}
+        </Text>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
           title="Increment counter by 5"
