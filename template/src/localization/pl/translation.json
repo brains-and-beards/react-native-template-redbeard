@@ -1,0 +1,39 @@
+{
+  "translationsDemoScreen": {
+    "languageIsSetTo": "Język jest ustawiony na '{{currentLanguage}}'",
+    "objectsAndArrays": {
+      "objectsAndArrays": "Obiekty i Arraye",
+      "returnObjectsDesc": "Możesz sprawić że t() zwróci array/objekt zamiast stringu:",
+      "fruitList": ["jabłko", "banan", "malina"],
+      "joinArraysDesc": "albo łączyć arraye w prosty sposób:"
+    },
+    "formatting": {
+      "formatting": "Formatowanie",
+      "description": "Możesz używać i18n do formatowania dat / cen / liczb w ten sposób:",
+      "date": "Data: {{date, DD-MM-YYYY}}",
+      "price": "Cena: {{value, currency}}",
+      "number": "Liczba: {{value, number}}"
+    },
+    "singularPlural": {
+      "singularPlural": "Liczba pojedyncza / mnoga",
+      "useCountOptionDesc": "Używaj <bold>t('key', {count})</bold> z <bold>key_plural</bold>:",
+      "item_0": "{{count}} rzecz",
+      "item_1": "{{count}} rzeczy",
+      "item_2": "{{count}} rzeczy",
+      "multiplePluralsDesc": "Używaj <bold>key_index</bold> jeśli język ma więcej niż 1 formę liczby mnogiej:",
+      "plate_0": "{{count}} talerz",
+      "plate_1": "{{count}} talerze",
+      "plate_2": "{{count}} talerzy",
+      "intervalPluralDesc": "Zainstaluj i18next-intervalplural-postprocessor, jeśli potrzebujesz definiować zakresy w ten sposób:",
+      "intervalPluralExample": "(2-7) - kilka rzeczy\n(7-inf) - dużo rzeczy"
+    },
+    "context": {
+      "context": "Kontekst",
+      "useContextOptionDesc": "Używaj <bold>t('key', {context})</bold> z <bold>key_context</bold> by zrobić coś takiego:",
+      "findAPerfectFriend": "Znajdź perfekcyjnego przyjaciela",
+      "findAPerfectFriend_male": "Znajdź perfekcyjnego chłopaka",
+      "findAPerfectFriend_female": "Znajdź perfekcyjną dziewczynę"
+    },
+    "switchToPolish": "Przełącz na 🇵🇱"
+  }
+}
