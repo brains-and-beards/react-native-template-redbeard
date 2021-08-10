@@ -1,16 +1,29 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import Routes from '@navigation/routes';
-import DemoScreen from '@screens/DemoScreen';
-import TranslationsDemoScreen from '@screens/TranslationsDemoScreen';
+import DemoScreen, {DemoScreenParams} from '@screens/DemoScreen';
+import TranslationsDemoScreen, {
+  TranslationsDemoScreenParams,
+} from '@screens/TranslationsDemoScreen';
+import {RouteProp} from '@react-navigation/native';
 
 export type RootStackParamList = {
-  [Routes.DEMO_SCREEN]: undefined;
-  [Routes.TRANSLATIONS_DEMO_SCREEN]: undefined;
+  [Routes.DEMO_SCREEN]: DemoScreenParams;
+  [Routes.TRANSLATIONS_DEMO_SCREEN]: TranslationsDemoScreenParams;
 };
 
-const RootStack = createStackNavigator<RootStackParamList>();
+export type RootNavigationProp<R extends keyof RootStackParamList> =
+  StackNavigationProp<RootStackParamList, R>;
 
+export type RootRouteProp<R extends keyof RootStackParamList> = RouteProp<
+  RootStackParamList,
+  R
+>;
+
+const RootStack = createStackNavigator<RootStackParamList>();
 const RootStackNavigator = () => {
   return (
     <RootStack.Navigator>

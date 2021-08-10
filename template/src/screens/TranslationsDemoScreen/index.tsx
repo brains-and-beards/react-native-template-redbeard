@@ -11,6 +11,8 @@ import SingularPluralCard from './SingularPluralCard';
 import ContextCard from './ContextCard';
 import FormattingCard from './FormattingCard';
 
+export type TranslationsDemoScreenParams = undefined;
+
 const TranslationsDemoScreen = () => {
   const {t, i18n} = useTranslation();
 
