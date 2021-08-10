@@ -21,6 +21,7 @@ import {ActivityIndicator, Image} from 'react-native';
 import {Button, StyleSheet, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import DemoCard from '@components/surfaces/DemoCard';
+import {TestIDs} from '@config/testIDs';
 
 export type DemoScreenParams = undefined;
 interface DemoScreenProps {
@@ -61,6 +62,7 @@ const DemoScreen = ({navigation}: DemoScreenProps) => {
           <>
             <Text style={styles.demoText}>{comicData.title}</Text>
             <Image
+              testID={TestIDs.DEMO_COMIC_IMAGE}
               source={{uri: comicData.imageUrl}}
               style={styles.demoImage}
               resizeMode="contain"
@@ -68,7 +70,7 @@ const DemoScreen = ({navigation}: DemoScreenProps) => {
             <Text style={styles.demoText}>{comicData.description}</Text>
           </>
         ) : (
-          <ActivityIndicator />
+          <ActivityIndicator testID={TestIDs.DEMO_COMIC_SPINNER} />
         )}
       </DemoCard>
       <DemoCard>
