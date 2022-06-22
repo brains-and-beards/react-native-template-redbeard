@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import {FormatFunction} from 'i18next';
+import {Platform} from 'react-native';
 
 const formatFunction: FormatFunction = (value, format, lng) => {
   if (value instanceof Date) {
@@ -21,6 +22,10 @@ function formatDate(date: Date, format?: string) {
 }
 
 function formatCurrency(value: number, lng?: string) {
+  if (Platform.OS === 'ios') {
+    //lack of Intl support on hermes engine for iOS
+    return `€${value}`;
+  }
   return Intl.NumberFormat(lng, {
     style: 'currency',
     currency: 'EUR',
@@ -28,5 +33,9 @@ function formatCurrency(value: number, lng?: string) {
 }
 
 function formatNumber(value: number, lng?: string) {
+  if (Platform.OS === 'ios') {
+    //lack of Intl support on hermes engine for iOS
+    return value;
+  }
   return Intl.NumberFormat(lng).format(value);
 }
