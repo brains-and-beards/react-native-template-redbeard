@@ -36,6 +36,12 @@ const DemoScreen = ({navigation}: RootStackScreenProps<Routes.DEMO_SCREEN>) => {
   return (
     <MainScreenLayout>
       <DemoCard>
+        <Text style={styles.demoText}>
+          {t('demoScreen.hermesEnabled', {
+            // @ts-ignore
+            enabled: global.HermesInternal ? 'YES' : 'NO',
+          })}
+        </Text>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
           title={t('demoScreen.incrementButton')}

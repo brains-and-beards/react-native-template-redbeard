@@ -1,5 +1,6 @@
 {
   "demoScreen": {
+    "hermesEnabled": "Hermes enabled -> {{enabled}}",
     "incrementButton": "Increment counter by 5",
     "decrementButton": "Decrement counter by 15",
     "counter": "Counter:",
