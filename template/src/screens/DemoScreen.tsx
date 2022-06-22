@@ -3,10 +3,7 @@ import Colors from '@config/ui/colors';
 import useAppDispatch from '@hooks/useAppDispatch';
 import useAppSelector from '@hooks/useAppSelector';
 import {hasData} from '@models/RemoteData';
-import type {
-  RootNavigationProp,
-  RootRouteProp,
-} from '@navigation/navigators/RootStackNavigator';
+import type {RootStackScreenProps} from '@navigation/navigators/RootStackNavigator';
 import Routes from '@navigation/routes';
 import {
   decrementCounterBy,
@@ -23,12 +20,7 @@ import {useTranslation} from 'react-i18next';
 import DemoCard from '@components/surfaces/DemoCard';
 
 export type DemoScreenParams = undefined;
-interface DemoScreenProps {
-  navigation: RootNavigationProp<Routes.DEMO_SCREEN>;
-  route: RootRouteProp<Routes.DEMO_SCREEN>;
-}
-
-const DemoScreen = ({navigation}: DemoScreenProps) => {
+const DemoScreen = ({navigation}: RootStackScreenProps<Routes.DEMO_SCREEN>) => {
   const counter = useAppSelector(selectCounter);
   const comicRequest = useAppSelector(selectComic);
   const dispatch = useAppDispatch();
