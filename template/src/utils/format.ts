@@ -23,7 +23,8 @@ function formatDate(date: Date, format?: string) {
 
 function formatCurrency(value: number, lng?: string) {
   if (Platform.OS === 'ios') {
-    //lack of Intl support on hermes engine for iOS
+    // lack of Intl support on hermes engine for iOS
+    // https://github.com/facebook/hermes/issues/23#issuecomment-1156823548
     return `€${value}`;
   }
   return Intl.NumberFormat(lng, {
@@ -34,7 +35,8 @@ function formatCurrency(value: number, lng?: string) {
 
 function formatNumber(value: number, lng?: string) {
   if (Platform.OS === 'ios') {
-    //lack of Intl support on hermes engine for iOS
+    // lack of Intl support on hermes engine for iOS
+    // https://github.com/facebook/hermes/issues/23#issuecomment-1156823548
     return value;
   }
   return Intl.NumberFormat(lng).format(value);
