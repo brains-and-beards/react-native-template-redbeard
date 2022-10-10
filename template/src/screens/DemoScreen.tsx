@@ -1,4 +1,9 @@
+import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
+import {ActivityIndicator, Button, Image, StyleSheet, Text} from 'react-native';
 import MainScreenLayout from '@components/layouts/MainScreenLayout';
+import DemoCard from '@components/surfaces/DemoCard';
+import {TestIDs} from '@config/testIDs';
 import Colors from '@config/ui/colors';
 import useAppDispatch from '@hooks/useAppDispatch';
 import useAppSelector from '@hooks/useAppSelector';
@@ -15,15 +20,9 @@ import {
   selectComic,
   selectCounter,
 } from './demoSlice';
-import React from 'react';
-import {useEffect} from 'react';
-import {ActivityIndicator, Image} from 'react-native';
-import {Button, StyleSheet, Text} from 'react-native';
-import {useTranslation} from 'react-i18next';
-import DemoCard from '@components/surfaces/DemoCard';
-import {TestIDs} from '@config/testIDs';
 
 export type DemoScreenParams = undefined;
+
 interface DemoScreenProps {
   navigation: RootNavigationProp<Routes.DEMO_SCREEN>;
   route: RootRouteProp<Routes.DEMO_SCREEN>;

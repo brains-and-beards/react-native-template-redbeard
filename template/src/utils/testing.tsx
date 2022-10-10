@@ -29,7 +29,7 @@ function render(
 export * from '@testing-library/react-native';
 export {render};
 
-export const createNavigationProps = (params?: {[key: string]: any}) => ({
+export const createNavigationProps = (params?: {[key: string]: any}): any => ({
   navigation: {
     navigate: jest.fn(),
   },

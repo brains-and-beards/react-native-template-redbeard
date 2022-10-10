@@ -1,15 +1,15 @@
 import React from 'react';
+import {TestIDs} from '@config/testIDs';
+import {RemoteDataType} from '@models/RemoteData';
+import Routes from '@navigation/routes';
 import {createNavigationProps, fireEvent, render} from '@utils/testing';
 import DemoScreen from './DemoScreen';
-import Routes from '@navigation/routes';
-import {RemoteDataType} from '@models/RemoteData';
-import {TestIDs} from '@config/testIDs';
 
 const navPropsMock = createNavigationProps();
 
 describe('when increment button pressed', () => {
   it('should increment counter by 5', () => {
-    const {getByText} = render(<DemoScreen {...(navPropsMock as any)} />);
+    const {getByText} = render(<DemoScreen {...navPropsMock} />);
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
@@ -60,7 +60,7 @@ describe('Comic card', () => {
         },
       };
       const {getByText, getByTestId} = render(
-        <DemoScreen {...(navPropsMock as any)} />,
+        <DemoScreen {...navPropsMock} />,
         {preloadedState},
       );
 
@@ -80,7 +80,7 @@ describe('Comic card', () => {
           },
         },
       };
-      const {getByTestId} = render(<DemoScreen {...(navPropsMock as any)} />, {
+      const {getByTestId} = render(<DemoScreen {...navPropsMock} />, {
         preloadedState,
       });
 
@@ -91,7 +91,7 @@ describe('Comic card', () => {
 
 describe('when "go to translations demo" pressed', () => {
   it('should navigate to translations demo screen', () => {
-    const {getByText} = render(<DemoScreen {...(navPropsMock as any)} />);
+    const {getByText} = render(<DemoScreen {...navPropsMock} />);
     fireEvent.press(getByText(/demoScreen.goToTranslationsDemo/));
 
     expect(navPropsMock.navigation.navigate).toBeCalledWith(
