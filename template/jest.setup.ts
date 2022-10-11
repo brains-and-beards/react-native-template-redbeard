@@ -1,5 +1,10 @@
 import 'react-native-gesture-handler/jestSetup';
 
+jest.useFakeTimers();
+
+const customGlobal = global;
+customGlobal.fetch = require('jest-fetch-mock');
+
 // react-native-config-node: read env variables from .env.example
 process.env.NODE_ENV = 'example';
 
@@ -10,6 +15,7 @@ jest.mock('react-native-reanimated', () => {
 
   return Reanimated;
 });
+// Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.mock('react-i18next', () => ({
   initReactI18next: {type: '3rdParty', init: jest.fn()},
