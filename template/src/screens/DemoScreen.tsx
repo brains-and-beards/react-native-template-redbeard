@@ -1,9 +1,17 @@
+import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
+import {ActivityIndicator, Button, Image, StyleSheet, Text} from 'react-native';
 import MainScreenLayout from '@components/layouts/MainScreenLayout';
+import DemoCard from '@components/surfaces/DemoCard';
+import {TestIDs} from '@config/testIDs';
 import Colors from '@config/ui/colors';
 import useAppDispatch from '@hooks/useAppDispatch';
 import useAppSelector from '@hooks/useAppSelector';
 import {hasData} from '@models/RemoteData';
-import type {RootStackScreenProps} from '@navigation/navigators/RootStackNavigator';
+import type {
+  RootNavigationProp,
+  RootRouteProp,
+} from '@navigation/navigators/RootStackNavigator';
 import Routes from '@navigation/routes';
 import {
   decrementCounterBy,
@@ -12,15 +20,15 @@ import {
   selectComic,
   selectCounter,
 } from './demoSlice';
-import React from 'react';
-import {useEffect} from 'react';
-import {ActivityIndicator, Image} from 'react-native';
-import {Button, StyleSheet, Text} from 'react-native';
-import {useTranslation} from 'react-i18next';
-import DemoCard from '@components/surfaces/DemoCard';
 
 export type DemoScreenParams = undefined;
-const DemoScreen = ({navigation}: RootStackScreenProps<Routes.DEMO_SCREEN>) => {
+
+interface DemoScreenProps {
+  navigation: RootNavigationProp<Routes.DEMO_SCREEN>;
+  route: RootRouteProp<Routes.DEMO_SCREEN>;
+}
+
+const DemoScreen = ({navigation}: DemoScreenProps) => {
   const counter = useAppSelector(selectCounter);
   const comicRequest = useAppSelector(selectComic);
   const dispatch = useAppDispatch();
@@ -36,12 +44,6 @@ const DemoScreen = ({navigation}: RootStackScreenProps<Routes.DEMO_SCREEN>) => {
   return (
     <MainScreenLayout>
       <DemoCard>
-        <Text style={styles.demoText}>
-          {t('demoScreen.hermesEnabled', {
-            // @ts-ignore
-            enabled: global.HermesInternal ? 'YES' : 'NO',
-          })}
-        </Text>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
           title={t('demoScreen.incrementButton')}
@@ -59,6 +61,7 @@ const DemoScreen = ({navigation}: RootStackScreenProps<Routes.DEMO_SCREEN>) => {
           <>
             <Text style={styles.demoText}>{comicData.title}</Text>
             <Image
+              testID={TestIDs.DEMO_COMIC_IMAGE}
               source={{uri: comicData.imageUrl}}
               style={styles.demoImage}
               resizeMode="contain"
@@ -66,7 +69,7 @@ const DemoScreen = ({navigation}: RootStackScreenProps<Routes.DEMO_SCREEN>) => {
             <Text style={styles.demoText}>{comicData.description}</Text>
           </>
         ) : (
-          <ActivityIndicator />
+          <ActivityIndicator testID={TestIDs.DEMO_COMIC_SPINNER} />
         )}
       </DemoCard>
       <DemoCard>

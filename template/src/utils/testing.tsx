@@ -9,7 +9,7 @@ import reducer from '@redux/rootReducer';
 import {RootState} from '@redux/store';
 
 interface Options extends RenderOptions {
-  preloadedState?: RootState;
+  preloadedState?: Partial<RootState>;
   store?: ReturnType<typeof configureStore>;
 }
 
@@ -26,6 +26,14 @@ function render(
   }
   return rtlRender(ui, {wrapper: Wrapper, ...renderOptions});
 }
-
 export * from '@testing-library/react-native';
 export {render};
+
+export const createNavigationProps = (params?: {[key: string]: any}): any => ({
+  navigation: {
+    navigate: jest.fn(),
+  },
+  route: {
+    params,
+  },
+});

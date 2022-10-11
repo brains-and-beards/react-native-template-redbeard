@@ -17,6 +17,7 @@ After init feel free to remove these:
 - `src/localization/pl`
 - `src/model/ComicModel.ts`
 - `src/screens/DemoScreen.tsx`
+- `src/screens/DemoScreen.test.tsx`
 - `src/screens/TranslationsDemoScreen`
 - `src/screens/demoSlice.ts`
 
