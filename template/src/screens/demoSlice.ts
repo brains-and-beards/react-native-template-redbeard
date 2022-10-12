@@ -14,7 +14,7 @@ import {put, takeEvery} from 'redux-saga/effects';
 import {makeApiCall, SuccessResponse} from '@api/apiSaga';
 import {getLatestComic} from '@api/comics';
 
-function* fetchLatestComic(): Generator {
+export function* fetchLatestComic(): Generator {
   const response = yield makeApiCall(getLatestComic, {
     onError: getLatestComicAsyncFailure,
   });
