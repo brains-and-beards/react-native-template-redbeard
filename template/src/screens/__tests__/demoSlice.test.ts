@@ -107,12 +107,13 @@ describe('DemoSlice', () => {
     });
 
     it('set getLatestComicAsyncFailure state', () => {
+      const error = 'Error message';
       const result = demoSlice.reducer(initialState, {
         type: getLatestComicAsyncFailure,
-        payload: 'Error message',
+        payload: error,
       });
 
-      expect(result.comic).toEqual(Failure(comicMockResponse));
+      expect(result.comic).toEqual(Failure(error));
     });
   });
 });
