@@ -51,8 +51,11 @@ export function* makeApiCall<P>(
     const json = parsedResponse as object;
     return {json, headers};
   } catch (error) {
-    console.error('[makeApiCall] Error:', error.message);
-    yield put(onError(error.message));
+    if (error instanceof Error) {
+      console.error('[makeApiCall] Error:', error.message);
+      yield put(onError(error.message));
+    }
+
     return null;
   }
 }
