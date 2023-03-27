@@ -2,6 +2,7 @@ import {API_TIMEOUT} from '@config/timing';
 import {ActionCreatorWithPayload} from '@reduxjs/toolkit';
 import tryJson from '@utils/tryJson';
 import {call, delay, put, race} from 'redux-saga/effects';
+import {getErrorMessage} from '@utils/getMessageFromError';
 
 export type SuccessResponse = {json: object; headers: Headers};
 type ApiCallResponse = Response | undefined;
@@ -51,10 +52,8 @@ export function* makeApiCall<P>(
     const json = parsedResponse as object;
     return {json, headers};
   } catch (error) {
-    if (error instanceof Error) {
-      console.error('[makeApiCall] Error:', error.message);
-      yield put(onError(error.message));
-    }
+    console.error('[makeApiCall] Error:', getErrorMessage(error));
+    yield put(onError(getErrorMessage(error)));
 
     return null;
   }
