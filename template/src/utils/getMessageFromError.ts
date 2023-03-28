@@ -1,10 +1,10 @@
 import {ErrorWithMessage} from './types';
 
-const isHaveMessageField = (error: unknown): error is ErrorWithMessage =>
+const hasMessageField = (error: unknown): error is ErrorWithMessage =>
   typeof (error as Record<string, unknown>)?.message === 'string';
 
 const toErrorWithMessage = (maybeError: unknown): ErrorWithMessage => {
-  if (isHaveMessageField(maybeError)) {
+  if (hasMessageField(maybeError)) {
     return maybeError;
   }
 
