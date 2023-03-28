@@ -1,20 +1,21 @@
 import Colors from '@config/ui/colors';
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
+import {FC} from '@utils/types';
 
-export const TitleText: React.FC = ({children}) => {
+export const TitleText: FC = ({children}) => {
   return <Text style={styles.titleText}>{children}</Text>;
 };
 
-export const DescText: React.FC = ({children}) => {
+export const DescText: FC = ({children}) => {
   return <Text style={styles.descText}>{children}</Text>;
 };
 
-export const ExampleText: React.FC = ({children}) => {
+export const ExampleText: FC = ({children}) => {
   return <Text style={styles.exampleText}>{children}</Text>;
 };
 
-export const BoldText: React.FC = ({children}) => {
+export const BoldText: FC = ({children}) => {
   return <Text style={styles.boldText}>{children}</Text>;
 };
 

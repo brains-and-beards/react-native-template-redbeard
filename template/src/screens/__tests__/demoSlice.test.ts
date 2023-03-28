@@ -74,15 +74,6 @@ describe('DemoSlice', () => {
       expect(result.comic).toEqual(Loading);
     });
 
-    it('set getLatestComicAsync to Loading if there is no comic in store', () => {
-      const result = demoSlice.reducer(initialState, {
-        type: getLatestComicAsync,
-        payload: comicMockResponse,
-      });
-
-      expect(result.comic).toEqual(Loading);
-    });
-
     it('set getLatestComicAsync to Refreshing if there is already comic in store', () => {
       const newInitialState = {
         ...initialState,
