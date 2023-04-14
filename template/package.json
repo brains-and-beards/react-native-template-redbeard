@@ -28,7 +28,7 @@
     "react": "18.2.0",
     "react-i18next": "^11.11.4",
     "react-native": "0.71.6",
-    "react-native-config": "^1.4.3",
+    "react-native-config": "^1.5.0",
     "react-native-flipper": "^0.178.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.8.0",
