@@ -1,17 +1,17 @@
-import i18n from 'i18next';
-import {initReactI18next} from 'react-i18next';
-import translationEN from './en/translation.json';
-import format from '../utils/format';
-import translationPL from './pl/translation.json';
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import translationEN from './en/translation.json'
+import format from '../utils/format'
+import translationPL from './pl/translation.json'
 
 export const resources = {
   en: {
-    translation: translationEN,
+    translation: translationEN
   },
   pl: {
-    translation: translationPL,
-  },
-};
+    translation: translationPL
+  }
+}
 
 i18n.use(initReactI18next).init({
   resources,
@@ -19,6 +19,6 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
-    format,
-  },
-});
+    format
+  }
+})

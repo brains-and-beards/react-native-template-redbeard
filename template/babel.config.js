@@ -2,8 +2,8 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   env: {
     test: {
-      plugins: ['react-native-config-node/transform'],
-    },
+      plugins: ['react-native-config-node/transform']
+    }
   },
   plugins: [
     [
@@ -19,7 +19,7 @@ module.exports = {
           '.tsx',
           '.jsx',
           '.js',
-          '.json',
+          '.json'
         ],
         alias: {
           '@api': './src/api',
@@ -33,9 +33,9 @@ module.exports = {
           '@navigation': './src/navigation',
           '@redux': './src/redux',
           '@screens': './src/screens',
-          '@utils': './src/utils',
-        },
-      },
-    ],
-  ],
-};
+          '@utils': './src/utils'
+        }
+      }
+    ]
+  ]
+}

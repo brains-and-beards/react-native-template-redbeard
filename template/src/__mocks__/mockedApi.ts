@@ -1,8 +1,8 @@
 interface MockedApiParams {
-  json: jest.Mock;
-  ok: boolean;
-  status: number;
-  headers: Headers;
+  json: jest.Mock
+  ok: boolean
+  status: number
+  headers: Headers
 }
 
 export const getMockedApiResponse = (
@@ -10,11 +10,11 @@ export const getMockedApiResponse = (
   ok = true,
   status = 200,
   headers = new Headers({
-    'Content-Type': 'application/json',
-  }),
+    'Content-Type': 'application/json'
+  })
 ): MockedApiParams => ({
   json,
   ok,
   status,
-  headers,
-});
+  headers
+})
