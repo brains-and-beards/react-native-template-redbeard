@@ -15,12 +15,12 @@ const MainScreenLayout: FC = ({ children }) => {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   safeArea: {
     backgroundColor: Colors.background,
-    flex: 1
-  }
+    flex: 1,
+  },
 })
 
 export default MainScreenLayout

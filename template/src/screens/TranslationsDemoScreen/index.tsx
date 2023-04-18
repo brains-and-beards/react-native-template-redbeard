@@ -24,7 +24,7 @@ const TranslationsDemoScreen = () => {
       <DemoCard>
         <TitleText>
           {t('translationsDemoScreen.languageIsSetTo', {
-            currentLanguage: i18n.language
+            currentLanguage: i18n.language,
           })}
         </TitleText>
       </DemoCard>
@@ -49,8 +49,8 @@ const TranslationsDemoScreen = () => {
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
-  }
+    justifyContent: 'space-around',
+  },
 })
 
 export default TranslationsDemoScreen

@@ -5,7 +5,7 @@ import {
   getLatestComicAsync,
   getLatestComicAsyncFailure,
   getLatestComicAsyncSuccess,
-  incrementCounterBy
+  incrementCounterBy,
 } from '@screens/demoSlice'
 import { comicMockParsed, comicMockResponse } from '__mocks__/fixtures'
 import { getMockedApiResponse } from '__mocks__/mockedApi'
@@ -20,7 +20,10 @@ describe('DemoSlice', () => {
     it('dispatches success action when the request succeed', () => {
       return expectSaga(fetchLatestComic)
         .provide([
-          [matchers.call.fn(getLatestComic), getMockedApiResponse(jest.fn(() => comicMockResponse))]
+          [
+            matchers.call.fn(getLatestComic),
+            getMockedApiResponse(jest.fn(() => comicMockResponse)),
+          ],
         ])
         .put(getLatestComicAsyncSuccess(comicMockParsed))
         .run()
@@ -47,7 +50,7 @@ describe('DemoSlice', () => {
     it('set incrementCounterBy state', () => {
       const result = demoSlice.reducer(initialState, {
         type: incrementCounterBy,
-        payload: 10
+        payload: 10,
       })
 
       expect(result.counter).toEqual(430)
@@ -56,7 +59,7 @@ describe('DemoSlice', () => {
     it('set decrementCounterBy state', () => {
       const result = demoSlice.reducer(initialState, {
         type: decrementCounterBy,
-        payload: 10
+        payload: 10,
       })
 
       expect(result.counter).toEqual(410)
@@ -65,7 +68,7 @@ describe('DemoSlice', () => {
     it('set getLatestComicAsync to Loading if there is no comic in store', () => {
       const result = demoSlice.reducer(initialState, {
         type: getLatestComicAsync,
-        payload: comicMockResponse
+        payload: comicMockResponse,
       })
 
       expect(result.comic).toEqual(Loading)
@@ -74,12 +77,12 @@ describe('DemoSlice', () => {
     it('set getLatestComicAsync to Refreshing if there is already comic in store', () => {
       const newInitialState = {
         ...initialState,
-        comic: Success(comicMockParsed)
+        comic: Success(comicMockParsed),
       }
 
       const result = demoSlice.reducer(newInitialState, {
         type: getLatestComicAsync,
-        payload: comicMockResponse
+        payload: comicMockResponse,
       })
 
       expect(result.comic).toEqual(Refreshing(comicMockParsed))
@@ -88,7 +91,7 @@ describe('DemoSlice', () => {
     it('set getLatestComicAsyncSuccess state', () => {
       const result = demoSlice.reducer(initialState, {
         type: getLatestComicAsyncSuccess,
-        payload: comicMockResponse
+        payload: comicMockResponse,
       })
 
       expect(result.comic).toEqual(Success(comicMockResponse))
@@ -98,7 +101,7 @@ describe('DemoSlice', () => {
       const error = 'Error message'
       const result = demoSlice.reducer(initialState, {
         type: getLatestComicAsyncFailure,
-        payload: error
+        payload: error,
       })
 
       expect(result.comic).toEqual(Failure(error))

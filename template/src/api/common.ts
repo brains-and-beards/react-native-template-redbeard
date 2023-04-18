@@ -11,8 +11,8 @@ export const makeRequest = async (params: RequestParams) => {
       ...restParams,
       headers: {
         Accept: 'application/json',
-        ...restParams.headers
-      }
+        ...restParams.headers,
+      },
     })
     return response
   } catch (error) {

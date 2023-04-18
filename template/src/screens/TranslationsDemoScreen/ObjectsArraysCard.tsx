@@ -12,14 +12,14 @@ const ObjectsArraysCard: React.FC = () => {
       <ExampleText>
         {JSON.stringify(
           t('translationsDemoScreen.objectsAndArrays.fruitList', {
-            returnObjects: true
-          })
+            returnObjects: true,
+          }),
         )}
       </ExampleText>
       <DescText>{t('translationsDemoScreen.objectsAndArrays.joinArraysDesc')}</DescText>
       <ExampleText>
         {t('translationsDemoScreen.objectsAndArrays.fruitList', {
-          joinArrays: '\n'
+          joinArrays: '\n',
         })}
       </ExampleText>
     </DemoCard>

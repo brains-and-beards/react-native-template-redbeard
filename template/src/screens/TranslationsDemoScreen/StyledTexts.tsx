@@ -21,20 +21,20 @@ export const BoldText: FC = ({ children }) => {
 
 const styles = StyleSheet.create({
   boldText: {
-    fontWeight: '700'
+    fontWeight: '700',
   },
   descText: {
     color: Colors.onSurface,
     fontSize: 15,
-    marginTop: 15
+    marginTop: 15,
   },
   exampleText: {
     color: Colors.palette.ANGRY,
-    fontSize: 14
+    fontSize: 14,
   },
   titleText: {
     color: Colors.onSurface,
     fontSize: 16,
-    fontWeight: '700'
-  }
+    fontWeight: '700',
+  },
 })

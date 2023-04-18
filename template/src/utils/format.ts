@@ -29,7 +29,7 @@ function formatCurrency(value: number, lng?: string) {
   }
   return Intl.NumberFormat(lng, {
     style: 'currency',
-    currency: 'EUR'
+    currency: 'EUR',
   }).format(value)
 }
 

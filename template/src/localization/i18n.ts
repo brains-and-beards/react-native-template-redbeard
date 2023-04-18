@@ -6,11 +6,11 @@ import translationPL from './pl/translation.json'
 
 export const resources = {
   en: {
-    translation: translationEN
+    translation: translationEN,
   },
   pl: {
-    translation: translationPL
-  }
+    translation: translationPL,
+  },
 }
 
 i18n.use(initReactI18next).init({
@@ -19,6 +19,6 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
-    format
-  }
+    format,
+  },
 })

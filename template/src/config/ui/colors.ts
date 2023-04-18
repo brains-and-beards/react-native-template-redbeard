@@ -7,7 +7,7 @@ enum Palette {
   LIGHT_GREY = '#939AA4',
   ANGRY = '#dd3333',
   DEEP_PURPLE = '#5D2555',
-  TRANSPARENT = 'rgba(0, 0, 0, 0)'
+  TRANSPARENT = 'rgba(0, 0, 0, 0)',
 }
 
 const Colors = {
@@ -22,7 +22,7 @@ const Colors = {
   onSurface: Palette.BLACK,
   error: Palette.ANGRY,
   onError: Palette.WHITE,
-  transparent: Palette.TRANSPARENT
+  transparent: Palette.TRANSPARENT,
 }
 
 export default Colors

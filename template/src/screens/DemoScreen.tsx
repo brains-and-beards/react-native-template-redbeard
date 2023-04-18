@@ -15,7 +15,7 @@ import {
   getLatestComicAsync,
   incrementCounterBy,
   selectComic,
-  selectCounter
+  selectCounter,
 } from './demoSlice'
 
 export type DemoScreenParams = undefined
@@ -79,12 +79,12 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
 
 const styles = StyleSheet.create({
   demoImage: {
-    height: 350
+    height: 350,
   },
   demoText: {
     color: Colors.onSurface,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 })
 
 export default DemoScreen

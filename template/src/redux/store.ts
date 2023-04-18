@@ -14,7 +14,7 @@ if (__DEV__) {
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware({ thunk: false }).concat(middlewares)
+  middleware: getDefaultMiddleware => getDefaultMiddleware({ thunk: false }).concat(middlewares),
 })
 
 sagaMiddleware.run(rootSaga)

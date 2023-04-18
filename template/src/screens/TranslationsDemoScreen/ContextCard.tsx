@@ -17,12 +17,12 @@ const ContextCard: React.FC = () => {
       <ExampleText>{t('translationsDemoScreen.context.findAPerfectFriend')}</ExampleText>
       <ExampleText>
         {t('translationsDemoScreen.context.findAPerfectFriend', {
-          context: 'male'
+          context: 'male',
         })}
       </ExampleText>
       <ExampleText>
         {t('translationsDemoScreen.context.findAPerfectFriend', {
-          context: 'female'
+          context: 'female',
         })}
       </ExampleText>
     </DemoCard>

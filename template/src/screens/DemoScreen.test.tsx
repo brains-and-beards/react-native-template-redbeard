@@ -13,7 +13,7 @@ describe('when increment button pressed', () => {
     const { getByText } = render(<DemoScreen {...navPropsMock} />)
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
-      10
+      10,
     )
     fireEvent.press(getByText(/demoScreen.incrementButton/))
     const counterValue = parseInt(getByText(/demoScreen.counter/).props.children.split(' ')[1], 10)
@@ -27,7 +27,7 @@ describe('when decrement button pressed', () => {
     const { getByText } = render(<DemoScreen {...navPropsMock} />)
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
-      10
+      10,
     )
     fireEvent.press(getByText(/demoScreen.decrementButton/))
     const counterValue = parseInt(getByText(/demoScreen.counter/).props.children.split(' ')[1], 10)
@@ -43,19 +43,19 @@ describe('Comic card', () => {
         id: 1,
         title: 'Some mock title',
         imageUrl: 'http://example.com/test.jpg',
-        description: 'Some mock description'
+        description: 'Some mock description',
       }
       const preloadedState = {
         demo: {
           counter: 420,
           comic: {
             type: RemoteDataType.Success as const,
-            data: comicMock
-          }
-        }
+            data: comicMock,
+          },
+        },
       }
       const { getByText, getByTestId } = render(<DemoScreen {...navPropsMock} />, {
-        preloadedState
+        preloadedState,
       })
 
       expect(getByText(comicMock.title)).toBeDefined()
@@ -70,12 +70,12 @@ describe('Comic card', () => {
         demo: {
           counter: 420,
           comic: {
-            type: RemoteDataType.Loading as const
-          }
-        }
+            type: RemoteDataType.Loading as const,
+          },
+        },
       }
       const { getByTestId } = render(<DemoScreen {...navPropsMock} />, {
-        preloadedState
+        preloadedState,
       })
 
       expect(getByTestId(TestIDs.DEMO_COMIC_SPINNER)).toBeDefined()

@@ -8,7 +8,7 @@ import {
   NotRequested,
   Refreshing,
   RemoteData,
-  Success
+  Success,
 } from '@models/RemoteData'
 import { put, takeEvery } from 'redux-saga/effects'
 import { makeApiCall, SuccessResponse } from '@api/apiSaga'
@@ -16,7 +16,7 @@ import { getLatestComic } from '@api/comics'
 
 export function* fetchLatestComic(): Generator {
   const response = yield makeApiCall(getLatestComic, {
-    onError: getLatestComicAsyncFailure
+    onError: getLatestComicAsyncFailure,
   })
 
   if (response) {
@@ -37,7 +37,7 @@ interface DemoState {
 
 const initialState: DemoState = {
   counter: 420,
-  comic: NotRequested
+  comic: NotRequested,
 }
 
 export const demoSlice = createSlice({
@@ -58,8 +58,8 @@ export const demoSlice = createSlice({
     },
     getLatestComicAsyncFailure: (state, action: PayloadAction<Error['message']>) => {
       state.comic = Failure(action.payload)
-    }
-  }
+    },
+  },
 })
 
 export const {
@@ -67,7 +67,7 @@ export const {
   decrementCounterBy,
   getLatestComicAsync,
   getLatestComicAsyncSuccess,
-  getLatestComicAsyncFailure
+  getLatestComicAsyncFailure,
 } = demoSlice.actions
 
 export const selectCounter = (state: RootState) => state.demo.counter

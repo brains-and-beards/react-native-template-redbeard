@@ -25,12 +25,12 @@ jest.mock('react-i18next', () => ({
       t: (str: string) => str,
       i18n: {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        changeLanguage: () => new Promise(() => {})
-      }
+        changeLanguage: () => new Promise(() => {}),
+      },
     }
-  }
+  },
 }))
 jest.mock('react-native-splash-screen', () => ({
   show: jest.fn(),
-  hide: jest.fn()
+  hide: jest.fn(),
 }))

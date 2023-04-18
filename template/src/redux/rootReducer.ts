@@ -1,7 +1,7 @@
 import demoReducer from '@screens/demoSlice'
 
 const rootReducer = {
-  demo: demoReducer
+  demo: demoReducer,
 }
 
 export default rootReducer

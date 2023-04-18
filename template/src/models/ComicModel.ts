@@ -10,5 +10,5 @@ export const parseComic = (json: any): Comic => ({
   id: json.num,
   title: json.title,
   description: json.alt,
-  imageUrl: json.img
+  imageUrl: json.img,
 })

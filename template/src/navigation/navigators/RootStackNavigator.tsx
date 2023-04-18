@@ -2,7 +2,7 @@ import React from 'react'
 import Routes from '@navigation/routes'
 import DemoScreen, { DemoScreenParams } from '@screens/DemoScreen'
 import TranslationsDemoScreen, {
-  TranslationsDemoScreenParams
+  TranslationsDemoScreenParams,
 } from '@screens/TranslationsDemoScreen'
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack'
 

@@ -13,14 +13,14 @@ interface ApiCallOptions {
 
 export function* makeApiCall<P>(
   apiRequest: (payload?: P) => Promise<ApiCallResponse>,
-  options: ApiCallOptions & { payload?: P }
+  options: ApiCallOptions & { payload?: P },
 ): Generator<unknown, SuccessResponse | null> {
   const { payload, onError } = options
 
   try {
     const { apiResponse, timeout } = (yield race({
       apiResponse: call(apiRequest, payload),
-      timeout: delay(API_TIMEOUT)
+      timeout: delay(API_TIMEOUT),
     })) as { apiResponse?: ApiCallResponse; timeout?: boolean }
 
     if (timeout) {
@@ -35,7 +35,7 @@ export function* makeApiCall<P>(
 
     if (!apiResponse.ok) {
       const message = `Server returned ${apiResponse.status} code! Response: ${tryJson(
-        apiResponse
+        apiResponse,
       )}`
       throw new Error(message)
     }
