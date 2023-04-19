@@ -1,11 +1,11 @@
-import Config from 'react-native-config';
+import Config from 'react-native-config'
 
 interface RequestParams extends RequestInit {
-  path: string;
+  path: string
 }
 
 export const makeRequest = async (params: RequestParams) => {
-  const {path, ...restParams} = params;
+  const { path, ...restParams } = params
   try {
     const response = await fetch(`${Config.API_URL}/${path}`, {
       ...restParams,
@@ -13,9 +13,9 @@ export const makeRequest = async (params: RequestParams) => {
         Accept: 'application/json',
         ...restParams.headers,
       },
-    });
-    return response;
+    })
+    return response
   } catch (error) {
-    console.error('[makeRequest] Error:', error);
+    console.error('[makeRequest] Error:', error)
   }
-};
+}

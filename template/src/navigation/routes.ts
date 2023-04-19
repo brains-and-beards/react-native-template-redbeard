@@ -3,4 +3,4 @@ enum Routes {
   TRANSLATIONS_DEMO_SCREEN = 'TRANSLATIONS_DEMO_SCREEN',
 }
 
-export default Routes;
+export default Routes

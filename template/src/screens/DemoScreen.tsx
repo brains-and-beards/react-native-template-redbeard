@@ -1,42 +1,42 @@
-import React, {useEffect} from 'react';
-import {useTranslation} from 'react-i18next';
-import {ActivityIndicator, Button, Image, StyleSheet, Text} from 'react-native';
-import MainScreenLayout from '@components/layouts/MainScreenLayout';
-import DemoCard from '@components/surfaces/DemoCard';
-import {TestIDs} from '@config/testIDs';
-import Colors from '@config/ui/colors';
-import useAppDispatch from '@hooks/useAppDispatch';
-import useAppSelector from '@hooks/useAppSelector';
-import {hasData} from '@models/RemoteData';
-import type {RootStackScreenProps} from '@navigation/navigators/RootStackNavigator';
-import Routes from '@navigation/routes';
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ActivityIndicator, Button, Image, StyleSheet, Text } from 'react-native'
+import MainScreenLayout from '@components/layouts/MainScreenLayout'
+import DemoCard from '@components/surfaces/DemoCard'
+import { TestIDs } from '@config/testIDs'
+import Colors from '@config/ui/colors'
+import useAppDispatch from '@hooks/useAppDispatch'
+import useAppSelector from '@hooks/useAppSelector'
+import { hasData } from '@models/RemoteData'
+import type { RootStackScreenProps } from '@navigation/navigators/RootStackNavigator'
+import Routes from '@navigation/routes'
 import {
   decrementCounterBy,
   getLatestComicAsync,
   incrementCounterBy,
   selectComic,
   selectCounter,
-} from './demoSlice';
+} from './demoSlice'
 
-export type DemoScreenParams = undefined;
+export type DemoScreenParams = undefined
 
 interface DemoScreenProps {
-  navigation: RootStackScreenProps<Routes.DEMO_SCREEN>['navigation'];
-  route: RootStackScreenProps<Routes.DEMO_SCREEN>['route'];
+  navigation: RootStackScreenProps<Routes.DEMO_SCREEN>['navigation']
+  route: RootStackScreenProps<Routes.DEMO_SCREEN>['route']
 }
 
-const DemoScreen = ({navigation}: DemoScreenProps) => {
-  const counter = useAppSelector(selectCounter);
-  const comicRequest = useAppSelector(selectComic);
-  const dispatch = useAppDispatch();
-  const {t} = useTranslation();
+const DemoScreen = ({ navigation }: DemoScreenProps) => {
+  const counter = useAppSelector(selectCounter)
+  const comicRequest = useAppSelector(selectComic)
+  const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
   useEffect(() => {
-    dispatch(getLatestComicAsync());
+    dispatch(getLatestComicAsync())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  const comicData = hasData(comicRequest) ? comicRequest.data : null;
+  const comicData = hasData(comicRequest) ? comicRequest.data : null
 
   return (
     <MainScreenLayout>
@@ -49,9 +49,7 @@ const DemoScreen = ({navigation}: DemoScreenProps) => {
           onPress={() => dispatch(decrementCounterBy(15))}
           title={t('demoScreen.decrementButton')}
         />
-        <Text style={styles.demoText}>
-          {`${t('demoScreen.counter')} ${counter}`}
-        </Text>
+        <Text style={styles.demoText}>{`${t('demoScreen.counter')} ${counter}`}</Text>
       </DemoCard>
       <DemoCard>
         {comicData ? (
@@ -59,7 +57,7 @@ const DemoScreen = ({navigation}: DemoScreenProps) => {
             <Text style={styles.demoText}>{comicData.title}</Text>
             <Image
               testID={TestIDs.DEMO_COMIC_IMAGE}
-              source={{uri: comicData.imageUrl}}
+              source={{ uri: comicData.imageUrl }}
               style={styles.demoImage}
               resizeMode="contain"
             />
@@ -76,17 +74,17 @@ const DemoScreen = ({navigation}: DemoScreenProps) => {
         />
       </DemoCard>
     </MainScreenLayout>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
+  demoImage: {
+    height: 350,
+  },
   demoText: {
     color: Colors.onSurface,
     textAlign: 'center',
   },
-  demoImage: {
-    height: 350,
-  },
-});
+})
 
-export default DemoScreen;
+export default DemoScreen

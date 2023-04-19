@@ -23,6 +23,6 @@ const Colors = {
   error: Palette.ANGRY,
   onError: Palette.WHITE,
   transparent: Palette.TRANSPARENT,
-};
+}
 
-export default Colors;
+export default Colors

@@ -1,3 +1,3 @@
-type milliseconds = number;
+type milliseconds = number
 
-export const API_TIMEOUT: milliseconds = 10000;
+export const API_TIMEOUT: milliseconds = 10000
