@@ -1,8 +1,8 @@
-import { API_TIMEOUT } from '@config/timing'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+import { getErrorMessage } from '@utils/getMessageFromError'
 import tryJson from '@utils/tryJson'
 import { call, delay, put, race } from 'redux-saga/effects'
-import { getErrorMessage } from '@utils/getMessageFromError'
+import { API_TIMEOUT } from '@config/timing'
 
 export type SuccessResponse = { json: object; headers: Headers }
 type ApiCallResponse = Response | undefined

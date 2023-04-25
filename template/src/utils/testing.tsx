@@ -1,9 +1,9 @@
-import React from 'react'
-import { RenderOptions, render as rtlRender } from '@testing-library/react-native'
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
 import reducer from '@redux/rootReducer'
 import { RootState } from '@redux/store'
+import { configureStore } from '@reduxjs/toolkit'
+import { RenderOptions, render as rtlRender } from '@testing-library/react-native'
+import React from 'react'
+import { Provider } from 'react-redux'
 
 interface Options extends RenderOptions {
   preloadedState?: Partial<RootState>

@@ -1,11 +1,11 @@
-import 'react-native-gesture-handler'
-import '@localization/i18n'
-import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import RootStackNavigator from '@navigation/navigators/RootStackNavigator'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import StoreProvider from 'providers/StoreProvider'
+import React from 'react'
+import 'react-native-gesture-handler'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import SplashScreen from 'react-native-splash-screen'
+import '@localization/i18n'
+import RootStackNavigator from '@navigation/navigators/RootStackNavigator'
 
 const App = () => {
   return (

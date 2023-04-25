@@ -1,14 +1,14 @@
-import MainScreenLayout from '@components/layouts/MainScreenLayout'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, StyleSheet } from 'react-native'
-import { resources } from '@localization/i18n'
+import MainScreenLayout from '@components/layouts/MainScreenLayout'
 import DemoCard from '@components/surfaces/DemoCard'
-import { TitleText } from './StyledTexts'
-import ObjectsArraysCard from './ObjectsArraysCard'
-import SingularPluralCard from './SingularPluralCard'
+import { resources } from '@localization/i18n'
 import ContextCard from './ContextCard'
 import FormattingCard from './FormattingCard'
+import ObjectsArraysCard from './ObjectsArraysCard'
+import SingularPluralCard from './SingularPluralCard'
+import { TitleText } from './StyledTexts'
 
 export type TranslationsDemoScreenParams = undefined
 
