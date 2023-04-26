@@ -16,7 +16,8 @@
     "reconnect:android": "adb reverse tcp:8081 tcp:8081 && adb shell input text 'RR'",
     "test": "jest",
     "typescript": "tsc -p ./tsconfig.json --pretty --noEmit --skipLibCheck",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier": "prettier --check \"**\""
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",

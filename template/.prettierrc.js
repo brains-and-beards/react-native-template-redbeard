@@ -15,6 +15,8 @@ module.exports = {
     '^@localization/(.*)$',
     '^@mobx/(.*)$',
     '^@models/(.*)$',
+    '^@hooks/(.*)$',
+    '^@utils/(.*)$',
     '^@navigation/(.*)$',
     '^@services/(.*)$',
     '^[./]',
