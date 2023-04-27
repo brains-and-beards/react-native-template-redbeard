@@ -1,6 +1,6 @@
-import Colors from '@config/ui/colors'
 import React from 'react'
 import { StyleSheet, View, ViewProps } from 'react-native'
+import Colors from '@config/ui/colors'
 
 const DemoCard: React.FC<ViewProps> = ({ children, style, ...props }) => {
   return (

@@ -1,6 +1,6 @@
-import DemoCard from '@components/surfaces/DemoCard'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import DemoCard from '@components/surfaces/DemoCard'
 import { DescText, ExampleText, TitleText } from './StyledTexts'
 
 const FormattingCard: React.FC = () => {
