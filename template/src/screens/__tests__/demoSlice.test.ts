@@ -1,3 +1,8 @@
+import { comicMockParsed, comicMockResponse } from '__mocks__/fixtures'
+import { getMockedApiResponse } from '__mocks__/mockedApi'
+import { expectSaga } from 'redux-saga-test-plan'
+import * as matchers from 'redux-saga-test-plan/matchers'
+import { throwError } from 'redux-saga-test-plan/providers'
 import {
   decrementCounterBy,
   demoSlice,
@@ -7,11 +12,6 @@ import {
   getLatestComicAsyncSuccess,
   incrementCounterBy,
 } from '@screens/demoSlice'
-import { comicMockParsed, comicMockResponse } from '__mocks__/fixtures'
-import { getMockedApiResponse } from '__mocks__/mockedApi'
-import { expectSaga } from 'redux-saga-test-plan'
-import * as matchers from 'redux-saga-test-plan/matchers'
-import { throwError } from 'redux-saga-test-plan/providers'
 import { getLatestComic } from '../../api/comics'
 import { Failure, Loading, Refreshing, Success } from '../../models/RemoteData'
 

@@ -5,9 +5,8 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:react-native/all',
     'plugin:react/recommended',
-    'prettier',
   ],
-  plugins: ['@typescript-eslint', 'babel', 'prettier', 'react-hooks', 'react-native', 'react'],
+  plugins: ['@typescript-eslint', 'babel', 'react-hooks', 'react-native', 'react', 'prettier'],
   env: {
     'react-native/react-native': true,
     es6: true,
@@ -16,6 +15,7 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'prettier/prettier': 'error',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': ['error', { variables: false, functions: false }],
@@ -30,55 +30,6 @@ module.exports = {
     'react-native/no-raw-text': 'off',
     'react/prop-types': 'off',
     'sort-imports': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        bracketSpacing: true,
-        semi: false,
-        printWidth: 100,
-        arrowParens: 'avoid',
-        trailingComma: 'all',
-        importOrder: [
-          '<THIRD_PARTY_MODULES>',
-          '^@assets/(.*)$',
-          '^@utils/(.*)$',
-          '^@api/(.*)$',
-          '^@config/(.*)$',
-          '^@hoc/(.*)$',
-          '^@hooks/(.*)$',
-          '^@localization/(.*)$',
-          '^@redux/(.*)$',
-          '^@models/(.*)$',
-          '^@navigation/(.*)$',
-          '^@screens/(.*)$',
-          '^@services/(.*)$',
-          '^[./]',
-        ],
-        importOrderSeparation: true,
-        importOrderSortSpecifiers: true,
-        overrides: [
-          {
-            files: '*.ts',
-            options: {
-              parser: 'typescript',
-            },
-          },
-          {
-            files: '*.tsx',
-            options: {
-              parser: 'typescript',
-            },
-          },
-          {
-            files: 'translation.json',
-            options: {
-              tabWidth: 4,
-            },
-          },
-        ],
-      },
-    ],
   },
   settings: {
     react: {

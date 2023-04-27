@@ -4,20 +4,22 @@ module.exports = {
   semi: false,
   printWidth: 100,
   arrowParens: 'avoid',
-  trailingComma: 'none',
+  trailingComma: 'all',
   importOrder: [
     '<THIRD_PARTY_MODULES>',
+    '^@api/(.*)$',
     '^@assets/(.*)$',
     '^@components/(.*)$',
     '^@config/(.*)$',
-    '^@constants/(.*)$',
-    '^@helpers/(.*)$',
+    '^@hoc/(.*)$',
+    '^@hooks/(.*)$',
     '^@localization/(.*)$',
-    '^@mobx/(.*)$',
     '^@models/(.*)$',
     '^@navigation/(.*)$',
-    '^@services/(.*)$',
-    '^[./]'
+    '^@redux/(.*)$',
+    '^@screens/(.*)$',
+    '^@utils/(.*)$',
+    '^[./]',
   ],
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
@@ -25,20 +27,20 @@ module.exports = {
     {
       files: '*.ts',
       options: {
-        parser: 'typescript'
-      }
+        parser: 'typescript',
+      },
     },
     {
       files: '*.tsx',
       options: {
-        parser: 'typescript'
-      }
+        parser: 'typescript',
+      },
     },
     {
       files: 'translation.json',
       options: {
-        tabWidth: 4
-      }
-    }
-  ]
+        tabWidth: 4,
+      },
+    },
+  ],
 }

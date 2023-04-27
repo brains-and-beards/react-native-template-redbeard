@@ -1,6 +1,6 @@
-import Colors from '@config/ui/colors'
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
+import Colors from '@config/ui/colors'
 import { FC } from '@utils/types'
 
 export const TitleText: FC = ({ children }) => {

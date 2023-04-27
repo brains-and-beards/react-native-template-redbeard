@@ -1,6 +1,6 @@
-import DemoCard from '@components/surfaces/DemoCard'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import DemoCard from '@components/surfaces/DemoCard'
 import { BoldText, DescText, ExampleText, TitleText } from './StyledTexts'
 
 const SingularPluralCard: React.FC = () => {

@@ -1,10 +1,10 @@
+import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import Routes from '@navigation/routes'
 import DemoScreen, { DemoScreenParams } from '@screens/DemoScreen'
 import TranslationsDemoScreen, {
   TranslationsDemoScreenParams,
 } from '@screens/TranslationsDemoScreen'
-import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack'
 
 export type RootStackParamList = {
   [Routes.DEMO_SCREEN]: DemoScreenParams

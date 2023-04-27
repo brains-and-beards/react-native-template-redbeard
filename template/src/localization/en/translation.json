@@ -1,45 +1,45 @@
 {
-  "demoScreen": {
-    "hermesEnabled": "Hermes enabled -> {{enabled}}",
-    "incrementButton": "Increment counter by 5",
-    "decrementButton": "Decrement counter by 15",
-    "counter": "Counter:",
-    "goToTranslationsDemo": "Go to translations demo"
-  },
-  "translationsDemoScreen": {
-    "languageIsSetTo": "Language is set to '{{currentLanguage}}'",
-    "objectsAndArrays": {
-      "objectsAndArrays": "Objects and Arrays",
-      "returnObjectsDesc": "You can tell t() to return arrays/objects instead of strings:",
-      "fruitList": ["apple", "banana", "raspberry"],
-      "joinArraysDesc": "or join arrays in simple way:"
+    "demoScreen": {
+        "hermesEnabled": "Hermes enabled -> {{enabled}}",
+        "incrementButton": "Increment counter by 5",
+        "decrementButton": "Decrement counter by 15",
+        "counter": "Counter:",
+        "goToTranslationsDemo": "Go to translations demo"
     },
-    "formatting": {
-      "formatting": "Formatting",
-      "description": "You can use i18n to format dates / prices / numbers like so:",
-      "date": "Date: {{date, MM/DD/YYYY}}",
-      "price": "Price: {{value, currency}}",
-      "number": "Number: {{value, number}}"
-    },
-    "singularPlural": {
-      "singularPlural": "Singular / Plural",
-      "useCountOptionDesc": "Use <bold>t('key', {count})</bold> with <bold>key_plural</bold>:",
-      "item": "{{count}} item",
-      "item_plural": "{{count}} items",
-      "multiplePluralsDesc": "Use <bold>key_index</bold> if language has more than 1 plural form:",
-      "plate": "{{count}} plate",
-      "plate_plural": "{{count}} plates",
-      "intervalPluralDesc": "Install i18next-intervalplural-postprocessor, if you need to define ranges like:",
-      "intervalPluralExample": "(2-7) - a few items\n(7-inf) - a lot of items"
-    },
-    "context": {
-      "context": "Context",
-      "useContextOptionDesc": "Use <bold>t('key', {context})</bold> with <bold>key_context</bold> to do something like this:",
-      "findAPerfectFriend": "Find a perfect friend",
-      "findAPerfectFriend_male": "Find a perfect boyfriend",
-      "findAPerfectFriend_female": "Find a perfect girlfriend"
-    },
-    "switchToPolish": "Switch to 🇵🇱",
-    "switchToEnglish": "Switch to 🇺🇸"
-  }
+    "translationsDemoScreen": {
+        "languageIsSetTo": "Language is set to '{{currentLanguage}}'",
+        "objectsAndArrays": {
+            "objectsAndArrays": "Objects and Arrays",
+            "returnObjectsDesc": "You can tell t() to return arrays/objects instead of strings:",
+            "fruitList": ["apple", "banana", "raspberry"],
+            "joinArraysDesc": "or join arrays in simple way:"
+        },
+        "formatting": {
+            "formatting": "Formatting",
+            "description": "You can use i18n to format dates / prices / numbers like so:",
+            "date": "Date: {{date, MM/DD/YYYY}}",
+            "price": "Price: {{value, currency}}",
+            "number": "Number: {{value, number}}"
+        },
+        "singularPlural": {
+            "singularPlural": "Singular / Plural",
+            "useCountOptionDesc": "Use <bold>t('key', {count})</bold> with <bold>key_plural</bold>:",
+            "item": "{{count}} item",
+            "item_plural": "{{count}} items",
+            "multiplePluralsDesc": "Use <bold>key_index</bold> if language has more than 1 plural form:",
+            "plate": "{{count}} plate",
+            "plate_plural": "{{count}} plates",
+            "intervalPluralDesc": "Install i18next-intervalplural-postprocessor, if you need to define ranges like:",
+            "intervalPluralExample": "(2-7) - a few items\n(7-inf) - a lot of items"
+        },
+        "context": {
+            "context": "Context",
+            "useContextOptionDesc": "Use <bold>t('key', {context})</bold> with <bold>key_context</bold> to do something like this:",
+            "findAPerfectFriend": "Find a perfect friend",
+            "findAPerfectFriend_male": "Find a perfect boyfriend",
+            "findAPerfectFriend_female": "Find a perfect girlfriend"
+        },
+        "switchToPolish": "Switch to 🇵🇱",
+        "switchToEnglish": "Switch to 🇺🇸"
+    }
 }
