@@ -1,8 +1,5 @@
 import { SuccessResponse, makeApiCall } from '@api/apiSaga'
 import { getLatestComic } from '@api/comics'
-import { RootState } from '@redux/store'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { put, takeEvery } from 'redux-saga/effects'
 import { Comic, parseComic } from '@models/ComicModel'
 import {
   Failure,
@@ -13,6 +10,9 @@ import {
   Success,
   hasData,
 } from '@models/RemoteData'
+import { RootState } from '@redux/store'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { put, takeEvery } from 'redux-saga/effects'
 
 export function* fetchLatestComic(): Generator {
   const response = yield makeApiCall(getLatestComic, {

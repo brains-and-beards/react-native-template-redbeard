@@ -1,8 +1,8 @@
-import React from 'react'
 import { TestIDs } from '@config/testIDs'
 import { RemoteDataType } from '@models/RemoteData'
-import { createNavigationProps, fireEvent, render } from '@utils/testing'
 import Routes from '@navigation/routes'
+import { createNavigationProps, fireEvent, render } from '@utils/testing'
+import React from 'react'
 import DemoScreen from './DemoScreen'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

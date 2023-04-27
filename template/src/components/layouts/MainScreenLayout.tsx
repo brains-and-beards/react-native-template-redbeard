@@ -1,8 +1,8 @@
+import Colors from '@config/ui/colors'
+import { FC } from '@utils/types'
 import React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Colors from '@config/ui/colors'
-import { FC } from '@utils/types'
 
 const MainScreenLayout: FC = ({ children }) => {
   return (
