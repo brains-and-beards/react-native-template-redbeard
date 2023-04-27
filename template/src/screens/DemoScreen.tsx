@@ -33,7 +33,6 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
 
   useEffect(() => {
     dispatch(getLatestComicAsync())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const comicData = hasData(comicRequest) ? comicRequest.data : null
