@@ -28,7 +28,6 @@ module.exports = {
   },
   rules: {
     // Typescript Plugin
-    // The following rules are made available via `@typescript-eslint`.
 
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
@@ -42,30 +41,28 @@ module.exports = {
     'sort-imports': 'off',
 
     // General
+
     'prettier/prettier': 'error',
     'import/order': 'off',
     'no-console': ['error', { allow: ['warn', 'error'] }],
 
     // ESLint Comments Plugin
-    // The following rules are made available via `eslint-plugin-eslint-comments`
+
     'eslint-comments/no-aggregating-enable': 1, // disallows eslint-enable comments for multiple eslint-disable comments
     'eslint-comments/no-unlimited-disable': 1, // disallows eslint-disable comments without rule names
     'eslint-comments/no-unused-disable': 1, // disallow disables that don't cover any errors
     'eslint-comments/no-unused-enable': 1, // // disallow enables that don't enable anything or enable rules that weren't disabled
 
     // React Hooks Plugin
-    // The following rules are made available via `react-hooks`.
 
     'react-hooks/exhaustive-deps': 'off',
     'react-hooks/rules-of-hooks': 'error',
 
     // React Plugin
-    // The following rules are made available via `eslint-plugin-react`.
 
     'react/prop-types': 'off',
 
     // React-Native Plugin
-    // The following rules are made available via `eslint-plugin-react-native`
 
     'react-native/no-inline-styles': 1,
   },
