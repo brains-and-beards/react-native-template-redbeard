@@ -8,7 +8,7 @@ enum Palette {
   ANGRY = '#dd3333',
   DEEP_PURPLE = '#5D2555',
   TRANSPARENT = 'rgba(0, 0, 0, 0)',
-  TRANSPARENT_DISABLED_BUTTON = 'rgba(0,0,1,0.14)',
+  TRANSPARENT_BLACK = 'rgba(0,0,1,0.14)',
 }
 
 const Colors = {
@@ -24,7 +24,7 @@ const Colors = {
   error: Palette.ANGRY,
   onError: Palette.WHITE,
   transparent: Palette.TRANSPARENT,
-  transparentDisabledButton: Palette.TRANSPARENT_DISABLED_BUTTON,
+  transparentBlack: Palette.TRANSPARENT_BLACK,
 }
 
 export default Colors

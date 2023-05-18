@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import {
   ActivityIndicator,
   Insets,
@@ -18,31 +18,26 @@ const BORDER_RADIUS = 5
 type RoundButtonType = 'primary' | 'secondary'
 
 export type BaseButtonPropsType = {
-  isDisabled?: boolean | null
+  disabled?: boolean | null
   onPress?: () => void
-  iconAtStart?: ReactElement
-  iconAtEnd?: ReactElement
-  text?: string | ReactElement
   variant?: RoundButtonType
   style?: StyleProp<ViewStyle>
   styleText?: StyleProp<TextStyle>
   rootStyle?: StyleProp<ViewStyle>
   hitSlop?: null | Insets | number
-  isLoading?: boolean
+  loading?: boolean
 }
 
 const BaseButton: FC<BaseButtonPropsType> = ({
-  isDisabled,
+  disabled,
   onPress,
-  iconAtStart,
-  iconAtEnd,
-  text,
   variant = 'primary',
   style,
   styleText,
   rootStyle,
   hitSlop,
-  isLoading,
+  loading,
+  children,
 }) => {
   const wrapperStyles = [
     styles.wrapper,
@@ -60,16 +55,13 @@ const BaseButton: FC<BaseButtonPropsType> = ({
     <Pressable
       hitSlop={hitSlop}
       onPress={onPress}
-      disabled={isDisabled}
+      disabled={disabled}
       style={({ pressed }) => [rootStyle, { opacity: pressed ? 0.6 : 1 }]}
     >
       <View style={wrapperStyles}>
-        {iconAtStart ? <View style={styles.iconAtStartWrapper}>{iconAtStart}</View> : null}
-        {text ? <Text style={textStyles}>{text}</Text> : null}
-        {iconAtEnd ? <View style={styles.iconAtEndWrapper}>{iconAtEnd}</View> : null}
-
-        {isLoading ? <ActivityIndicator size="small" /> : null}
-        {isDisabled ? <View style={styles.disabled} /> : null}
+        <Text style={textStyles}>{children}</Text>
+        {loading ? <ActivityIndicator size="small" style={styles.loadingIndicator} /> : null}
+        {disabled ? <View style={styles.disabled} /> : null}
       </View>
     </Pressable>
   )
@@ -80,13 +72,10 @@ export default BaseButton
 const styles = StyleSheet.create({
   disabled: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: colors.transparentDisabledButton,
+    backgroundColor: colors.transparentBlack,
   },
-  iconAtEndWrapper: {
-    marginLeft: 8,
-  },
-  iconAtStartWrapper: {
-    marginRight: 8,
+  loadingIndicator: {
+    marginLeft: 5,
   },
   primary: {
     backgroundColor: colors.primary,
