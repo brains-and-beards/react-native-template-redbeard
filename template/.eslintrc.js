@@ -15,6 +15,7 @@ module.exports = {
     'prettier',
     'jest',
     'eslint-comments',
+    '@jambit/typed-redux-saga',
   ],
   env: {
     'react-native/react-native': true,
@@ -65,6 +66,11 @@ module.exports = {
     // React-Native Plugin
 
     'react-native/no-inline-styles': 1,
+
+    // Typed Redux Saga Plugin
+
+    '@jambit/typed-redux-saga/use-typed-effects': 'error', // ensures, that you import from typed-redux-saga instead of redux-saga/effects
+    '@jambit/typed-redux-saga/delegate-effects': 'error', // ensures, that you use yield* on effects from typed-redux-saga
   },
   settings: {
     react: {

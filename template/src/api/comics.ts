@@ -1,7 +1,4 @@
-import { makeRequest } from './common'
+import { getRequest } from './common'
+import { ComicBE } from './types/comic.types'
 
-export const getLatestComic = () =>
-  makeRequest({
-    path: 'info.0.json',
-    method: 'GET',
-  })
+export const getLatestComic = () => getRequest<ComicBE>({ path: 'info.0.json' })
