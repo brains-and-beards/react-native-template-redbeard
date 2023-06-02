@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
+import { logInAsyncSuccess } from '@api/authSlice'
 import { setAuthConfig } from '@api/common'
-import { logInAsyncSuccess } from '@screens/userSlice'
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
 

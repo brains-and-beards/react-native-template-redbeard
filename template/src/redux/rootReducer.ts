@@ -1,9 +1,9 @@
+import authReducer from '@api/authSlice'
 import demoReducer from '@screens/demoSlice'
-import userReducer from '@screens/userSlice'
 
 const rootReducer = {
+  auth: authReducer,
   demo: demoReducer,
-  user: userReducer,
 }
 
 export default rootReducer
