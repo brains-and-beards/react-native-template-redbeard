@@ -1,6 +1,7 @@
 import { API_TIMEOUT } from '@config/timing';
 import { HttpError, getErrorMessage, isTimeoutError } from '@utils/error';
 import Config from 'react-native-config'
+import { refreshTokens } from './auth';
 
 interface RequestParams extends Omit<RequestInit, 'body' | 'signal'> {
   path: string
@@ -9,7 +10,26 @@ interface RequestParams extends Omit<RequestInit, 'body' | 'signal'> {
 
 type SimplifiedRequestParams = Omit<RequestParams, 'method'>
 
-async function makeRequest<T>(params: RequestParams): Promise<T> {
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+}
+interface AuthConfig extends Partial<AuthTokens> {
+  persistNewTokens?: ((tokens: AuthTokens) => void)
+}
+
+const authConfig: AuthConfig = {
+  accessToken: undefined,
+  refreshToken: undefined,
+  persistNewTokens: undefined
+}
+
+export function setAuthConfig(newConfig: AuthConfig) {
+  Object.assign(authConfig, newConfig)
+};
+
+
+async function makeRequest<T>(params: RequestParams, isFirstTry = true): Promise<T> {
   // Change the default request timeout
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
@@ -26,6 +46,11 @@ async function makeRequest<T>(params: RequestParams): Promise<T> {
         ...restParams.headers,
       },
     });
+
+    const isAuthenticatedRequest = restParams.headers && 'authorization' in restParams.headers
+    if(response.status === 401  && isFirstTry && isAuthenticatedRequest) {
+        return refreshTokensAndRetryRequest<T>(params)
+    }
 
     const hasBody = parseInt(response.headers.get('content-length')!) !== 0;
     const body = hasBody ? await response.json() : null
@@ -45,6 +70,35 @@ async function makeRequest<T>(params: RequestParams): Promise<T> {
   } finally {
     clearTimeout(timeoutId);
   }
+}
+
+async function refreshTokensAndRetryRequest<T>(params: RequestParams) {
+  if (!authConfig.refreshToken) {
+    throw new Error('Tokens cannot be refreshed without the refresh token');
+  }
+
+  if (!authConfig.persistNewTokens) {
+    throw new Error("Tokens won't be persisted without redux handler for it");
+  }
+
+  let newTokens: AuthTokens;
+
+  try {
+    newTokens = await refreshTokens(authConfig.refreshToken)
+  } catch (error) {
+    throw new Error(`Failed to refresh expired auth tokens - ${getErrorMessage(error)}`);
+  }
+
+  authConfig.persistNewTokens(newTokens)
+  const refreshedParams: RequestParams = {
+    ...params,
+    headers: {
+      ...params.headers,
+      authorization: `Bearer ${newTokens.accessToken}`,
+    }
+  }
+
+  return makeRequest<T>(refreshedParams, false)
 }
 
 export const getRequest = <T>(params: SimplifiedRequestParams) => {
@@ -86,3 +140,23 @@ export const deleteRequest = <T>(params: SimplifiedRequestParams) => {
   }
   return makeRequest<T>(deleteParams)
 }
+
+const withAuth = (params: RequestParams): RequestParams => {
+  if (!authConfig.accessToken) {
+    throw new Error('Authenticated request cannot be made without the token');
+  }
+
+  return {
+    ...params,
+    headers: {
+      ...params.headers,
+      authorization: `Bearer ${authConfig.accessToken}`,
+    },
+  };
+};
+
+export const authGetRequest = <T>(params: SimplifiedRequestParams) => getRequest<T>(withAuth(params));
+export const authPostRequest = <T>(params: SimplifiedRequestParams) => postRequest<T>(withAuth(params));
+export const authPutRequest = <T>(params: SimplifiedRequestParams) => putRequest<T>(withAuth(params));
+export const authPatchRequest = <T>(params: SimplifiedRequestParams) => patchRequest<T>(withAuth(params));
+export const authDeleteRequest = <T>(params: SimplifiedRequestParams) => deleteRequest<T>(withAuth(params));

@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
+import { setAuthConfig } from '@api/common'
+import { logInAsyncSuccess } from '@screens/userSlice'
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
 
@@ -18,6 +20,8 @@ const store = configureStore({
 })
 
 sagaMiddleware.run(rootSaga)
+
+setAuthConfig({ persistNewTokens: tokens => store.dispatch(logInAsyncSuccess(tokens)) })
 
 export type RootState = ReturnType<typeof store.getState>
 

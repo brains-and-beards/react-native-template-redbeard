@@ -25,7 +25,7 @@ export function* fetchLatestComic() {
   }
 }
 
-export function* watchFetchLatestComicSaga() {
+export function* watchGetLatestComicSaga() {
   yield* takeEvery(getLatestComicAsync, fetchLatestComic)
 }
 

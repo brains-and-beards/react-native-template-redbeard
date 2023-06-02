@@ -7,7 +7,7 @@ import { TestIDs } from '@config/testIDs'
 import Colors from '@config/ui/colors'
 import useAppDispatch from '@hooks/useAppDispatch'
 import useAppSelector from '@hooks/useAppSelector'
-import { hasData } from '@models/RemoteData'
+import { hasData, isLoading } from '@models/RemoteData'
 import type { RootStackScreenProps } from '@navigation/navigators/RootStackNavigator'
 import Routes from '@navigation/routes'
 import {
@@ -17,6 +17,7 @@ import {
   selectComic,
   selectCounter,
 } from './demoSlice'
+import { logInAsync, selectAuthTokens, selectIsLoggedIn } from './userSlice'
 
 export type DemoScreenParams = undefined
 
@@ -26,6 +27,8 @@ interface DemoScreenProps {
 }
 
 const DemoScreen = ({ navigation }: DemoScreenProps) => {
+  const authTokensRequest = useAppSelector(selectAuthTokens)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const counter = useAppSelector(selectCounter)
   const comicRequest = useAppSelector(selectComic)
   const dispatch = useAppDispatch()
@@ -39,6 +42,21 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
 
   return (
     <MainScreenLayout>
+      <DemoCard>
+        <Text style={styles.demoText}>{t('demoScreen.logInStatus', { isLoggedIn })}</Text>
+        {isLoading(authTokensRequest) ? (
+          <ActivityIndicator />
+        ) : isLoggedIn ? (
+          <Button title={t('demoScreen.logOutButton')} />
+        ) : (
+          <Button
+            title={t('demoScreen.logInButton')}
+            onPress={() =>
+              dispatch(logInAsync({ username: 'FAKE_USERNAME', password: 'FAKE_PASSWORD' }))
+            }
+          />
+        )}
+      </DemoCard>
       <DemoCard>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
