@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 'redux-persist'
 import createSagaMiddleware from 'redux-saga'
 import { logInAsyncSuccess } from '@api/authSlice'
 import { setAuthConfig } from '@api/common'
@@ -16,12 +17,20 @@ if (__DEV__) {
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware({ thunk: false }).concat(middlewares),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+      thunk: false,
+    }).concat(middlewares),
 })
 
 sagaMiddleware.run(rootSaga)
 
 setAuthConfig({ persistNewTokens: tokens => store.dispatch(logInAsyncSuccess(tokens)) })
+
+export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
 

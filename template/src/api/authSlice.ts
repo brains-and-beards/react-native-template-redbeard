@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { REHYDRATE } from 'redux-persist'
 import { call, put, takeLatest, takeLeading } from 'typed-redux-saga'
 import { logIn as logInRequest } from '@api/auth'
 import { AuthTokens, setAuthConfig } from '@api/common'
@@ -7,14 +8,25 @@ import { Failure, Loading, NotRequested, RemoteData, Success, isSuccess } from '
 import { RootState } from '@redux/store'
 import { getErrorMessage } from '@utils/error'
 
+interface RehydrateAction {
+  type: typeof REHYDRATE
+  key: string
+  payload: RootState
+}
+
 // eslint-disable-next-line require-yield
-function* setApiAuthConfig(action: ReturnType<typeof logInAsyncSuccess>) {
-  setAuthConfig(action.payload)
+function* setApiAuthConfig(action: ReturnType<typeof logInAsyncSuccess> | RehydrateAction) {
+  const isLoginAction = action.type === logInAsyncSuccess.type
+
+  if (isLoginAction) {
+    setAuthConfig(action.payload)
+  } else if (isSuccess(action.payload.auth.tokens)) {
+    setAuthConfig(action.payload.auth.tokens.data)
+  }
 }
 
 export function* watchAuthTokens() {
-  // TODO yield* takeLatest([logInAsyncSuccess, REHYDRATE], setApiAuthConfig)
-  yield* takeLatest(logInAsyncSuccess, setApiAuthConfig)
+  yield* takeLatest([logInAsyncSuccess, REHYDRATE], setApiAuthConfig)
 }
 
 function* logIn(action: ReturnType<typeof logInAsync>) {
