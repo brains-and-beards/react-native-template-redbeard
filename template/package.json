@@ -30,6 +30,7 @@
     "react-i18next": "^11.11.4",
     "react-native": "0.71.6",
     "react-native-config": "^1.4.3",
+    "react-native-encrypted-storage": "^4.0.3",
     "react-native-flipper": "^0.178.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-mmkv": "^2.8.0",

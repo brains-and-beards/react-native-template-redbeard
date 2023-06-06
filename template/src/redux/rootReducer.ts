@@ -1,17 +1,16 @@
-import { combineReducers } from 'redux'
-import { persistReducer } from 'redux-persist'
+import { persistCombineReducers } from 'redux-persist'
 import authReducer from '@api/authSlice'
 import demoReducer from '@screens/demoSlice'
-import storage from './persistance'
+import { storage } from './persistance'
 
-const rootReducer = combineReducers({
+const rootReducer = {
   auth: authReducer,
   demo: demoReducer,
-})
-
-const persistConfig = {
-  key: 'root',
-  storage,
 }
 
-export default persistReducer(persistConfig, rootReducer)
+const rootPersistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['auth'],
+}
+export default persistCombineReducers(rootPersistConfig, rootReducer)

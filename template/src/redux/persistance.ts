@@ -23,4 +23,5 @@ const reduxStorage: Storage = {
   },
 }
 
-export default reduxStorage
+export { reduxStorage as storage }
+export { default as safeStorage } from 'react-native-encrypted-storage'
