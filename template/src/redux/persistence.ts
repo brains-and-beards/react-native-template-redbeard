@@ -1,3 +1,4 @@
+import EncryptedStorage from 'react-native-encrypted-storage'
 import { MMKV } from 'react-native-mmkv'
 import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin'
 import { Storage } from 'redux-persist'
@@ -25,3 +26,8 @@ const reduxStorage: Storage = {
 
 export { reduxStorage as storage }
 export { default as safeStorage } from 'react-native-encrypted-storage'
+
+export function clearPersistence() {
+  storage.clearAll()
+  return EncryptedStorage.clear()
+}

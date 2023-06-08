@@ -5,7 +5,8 @@ import { logIn as logInRequest } from '@api/auth'
 import { AuthTokens, setAuthConfig } from '@api/common'
 import { Credentials } from '@api/types/auth.types'
 import { Failure, Loading, NotRequested, RemoteData, Success, isSuccess } from '@models/RemoteData'
-import { safeStorage } from '@redux/persistance'
+import { safeStorage } from '@redux/persistence'
+import { resetStore } from '@redux/rootActions'
 import { RootState } from '@redux/store'
 import { getErrorMessage } from '@utils/error'
 
@@ -21,11 +22,20 @@ interface RehydrateAction {
 }
 
 // eslint-disable-next-line require-yield
-function* setApiAuthConfig(action: ReturnType<typeof logInAsyncSuccess> | RehydrateAction) {
-  const isLoginAction = action.type === logInAsyncSuccess.type
+function* setApiAuthConfig(
+  action: ReturnType<typeof logInAsyncSuccess> | ReturnType<typeof resetStore> | RehydrateAction,
+) {
+  const isLoginAction = logInAsyncSuccess.match(action)
+  const isResetStoreAction = resetStore.match(action)
 
   if (isLoginAction) {
     setAuthConfig(action.payload)
+  } else if (isResetStoreAction) {
+    setAuthConfig({
+      accessToken: undefined,
+      refreshToken: undefined,
+      persistNewTokens: undefined,
+    })
   } else if (
     action.key === authPersistConfig.key &&
     action.payload &&
@@ -37,7 +47,7 @@ function* setApiAuthConfig(action: ReturnType<typeof logInAsyncSuccess> | Rehydr
 }
 
 export function* watchAuthTokens() {
-  yield* takeLatest([logInAsyncSuccess, REHYDRATE], setApiAuthConfig)
+  yield* takeLatest([logInAsyncSuccess, REHYDRATE, resetStore], setApiAuthConfig)
 }
 
 function* logIn(action: ReturnType<typeof logInAsync>) {
