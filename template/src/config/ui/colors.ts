@@ -20,6 +20,8 @@ const Colors = {
   onBackground: Palette.WHITE,
   surface: Palette.OFF_WHITE,
   onSurface: Palette.BLACK,
+  inputBackground: Palette.WHITE,
+  onInputBackground: Palette.BLACK,
   error: Palette.ANGRY,
   onError: Palette.WHITE,
   transparent: Palette.TRANSPARENT,

@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { REHYDRATE, persistReducer } from 'redux-persist'
+import { PersistPartial } from 'redux-persist/es/persistReducer'
 import { call, put, takeLatest, takeLeading } from 'typed-redux-saga'
 import { logIn as logInRequest } from '@api/auth'
 import { AuthTokens, setAuthConfig } from '@api/common'
@@ -10,15 +11,19 @@ import { resetStore } from '@redux/rootActions'
 import { RootState } from '@redux/store'
 import { getErrorMessage } from '@utils/error'
 
-type ReducersUnion = {
+type TopLevelStoreStates = {
   [K in keyof RootState]: RootState[K]
 }[keyof RootState]
+
+type SeparatelyPersistedStates<T> = T extends PersistPartial ? T : never
+
+// Payload depends on persist config, it can be any of separately persisted state chunks
+type RehydratePayload = Partial<RootState> | SeparatelyPersistedStates<TopLevelStoreStates>
 
 interface RehydrateAction {
   type: typeof REHYDRATE
   key: string
-  // Payload depends on your persist config, it can be any of your separately persisted state chunks
-  payload?: Partial<RootState> | ReducersUnion
+  payload?: RehydratePayload
 }
 
 // eslint-disable-next-line require-yield
@@ -34,7 +39,6 @@ function* setApiAuthConfig(
     setAuthConfig({
       accessToken: undefined,
       refreshToken: undefined,
-      persistNewTokens: undefined,
     })
   } else if (
     action.key === authPersistConfig.key &&

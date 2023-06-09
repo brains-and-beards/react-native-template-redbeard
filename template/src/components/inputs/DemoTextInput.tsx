@@ -9,7 +9,8 @@ const DemoTextInput: React.FC<TextInputProps> = ({ style, ...props }) => {
 
 const styles = StyleSheet.create({
   demoTextInput: {
-    backgroundColor: Colors.palette.WHITE,
+    backgroundColor: Colors.inputBackground,
+    color: Colors.onInputBackground,
     fontSize: 32,
     ...typography.textInput,
   },
