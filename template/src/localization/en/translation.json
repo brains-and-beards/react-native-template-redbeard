@@ -1,7 +1,8 @@
 {
+    "loginScreen": {
+        "logInButton": "Log in"
+    },
     "demoScreen": {
-        "logInStatus": "Logged in: {{isLoggedIn}}",
-        "logInButton": "Log in",
         "logOutButton": "Log out",
         "incrementButton": "Increment counter by 5",
         "decrementButton": "Decrement counter by 15",

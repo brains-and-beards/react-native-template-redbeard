@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, Button, Image, StyleSheet, Text } from 'react-native'
-import { logInAsync, selectAuthTokens, selectIsLoggedIn } from '@api/authSlice'
 import MainScreenLayout from '@components/layouts/MainScreenLayout'
 import DemoCard from '@components/surfaces/DemoCard'
 import { TestIDs } from '@config/testIDs'
 import Colors from '@config/ui/colors'
 import useAppDispatch from '@hooks/useAppDispatch'
 import useAppSelector from '@hooks/useAppSelector'
-import { hasData, isLoading, isNotRequested } from '@models/RemoteData'
+import { hasData, isNotRequested } from '@models/RemoteData'
 import type { RootStackScreenProps } from '@navigation/navigators/RootStackNavigator'
 import Routes from '@navigation/routes'
 import { clearPersistence } from '@redux/persistence'
@@ -31,8 +30,6 @@ interface DemoScreenProps {
 
 const DemoScreen = ({ navigation }: DemoScreenProps) => {
   const [isLogoutLoading, setIsLogoutLoading] = useState(false)
-  const authTokensRequest = useAppSelector(selectAuthTokens)
-  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const counter = useAppSelector(selectCounter)
   const comicRequest = useAppSelector(selectComic)
   const dispatch = useAppDispatch()
@@ -62,21 +59,6 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
 
   return (
     <MainScreenLayout>
-      <DemoCard>
-        <Text style={styles.demoText}>{t('demoScreen.logInStatus', { isLoggedIn })}</Text>
-        {isLoading(authTokensRequest) || isLogoutLoading ? (
-          <ActivityIndicator />
-        ) : isLoggedIn ? (
-          <Button title={t('demoScreen.logOutButton')} onPress={logOut} />
-        ) : (
-          <Button
-            title={t('demoScreen.logInButton')}
-            onPress={() =>
-              dispatch(logInAsync({ username: 'FAKE_USERNAME', password: 'FAKE_PASSWORD' }))
-            }
-          />
-        )}
-      </DemoCard>
       <DemoCard>
         <Button
           onPress={() => dispatch(incrementCounterBy(5))}
@@ -109,6 +91,13 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
           onPress={() => navigation.navigate(Routes.TRANSLATIONS_DEMO_SCREEN)}
           title={t('demoScreen.goToTranslationsDemo')}
         />
+      </DemoCard>
+      <DemoCard>
+        {isLogoutLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <Button title={t('demoScreen.logOutButton')} onPress={logOut} />
+        )}
       </DemoCard>
     </MainScreenLayout>
   )
