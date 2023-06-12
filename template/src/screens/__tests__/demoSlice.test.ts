@@ -1,5 +1,4 @@
 import { comicMockParsed, comicMockResponse } from '__mocks__/fixtures'
-import { getMockedApiResponse } from '__mocks__/mockedApi'
 import { expectSaga } from 'redux-saga-test-plan'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
@@ -19,12 +18,7 @@ describe('DemoSlice', () => {
   describe('Demo saga fetchLatestComic', () => {
     it('dispatches success action when the request succeed', () => {
       return expectSaga(fetchLatestComic)
-        .provide([
-          [
-            matchers.call.fn(getLatestComic),
-            getMockedApiResponse(jest.fn(() => comicMockResponse)),
-          ],
-        ])
+        .provide([[matchers.call.fn(getLatestComic), comicMockResponse]])
         .put(getLatestComicAsyncSuccess(comicMockParsed))
         .run()
     })
