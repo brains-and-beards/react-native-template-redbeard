@@ -5,7 +5,7 @@ import { Storage } from 'redux-persist'
 
 const storage = new MMKV()
 
-if (__DEV__) {
+if (__DEV__ && !process.env.JEST_WORKER_ID) {
   initializeMMKVFlipper({ default: storage })
 }
 
@@ -25,7 +25,7 @@ const reduxStorage: Storage = {
 }
 
 export { reduxStorage as storage }
-export { default as safeStorage } from 'react-native-encrypted-storage'
+export { EncryptedStorage as safeStorage }
 
 export function clearPersistence() {
   storage.clearAll()
