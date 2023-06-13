@@ -1,1 +1,1 @@
-export const isJest = () => Boolean(process.env.JEST_WORKER_ID)
+export const isJest = !!process.env.JEST_WORKER_ID
