@@ -26,7 +26,6 @@ interface RehydrateAction {
   payload?: RehydratePayload
 }
 
-// eslint-disable-next-line require-yield
 function* setApiAuthConfig(
   action: ReturnType<typeof logInAsyncSuccess> | ReturnType<typeof resetStore> | RehydrateAction,
 ) {
@@ -34,19 +33,16 @@ function* setApiAuthConfig(
   const isResetStoreAction = resetStore.match(action)
 
   if (isLoginAction) {
-    setAuthConfig(action.payload)
+    yield* call(setAuthConfig, action.payload)
   } else if (isResetStoreAction) {
-    setAuthConfig({
-      accessToken: undefined,
-      refreshToken: undefined,
-    })
+    yield* call(setAuthConfig, { accessToken: undefined, refreshToken: undefined })
   } else if (
     action.key === authPersistConfig.key &&
     action.payload &&
     'tokens' in action.payload &&
     isSuccess(action.payload.tokens)
   ) {
-    setAuthConfig(action.payload.tokens.data)
+    yield* call(setAuthConfig, action.payload.tokens.data)
   }
 }
 
