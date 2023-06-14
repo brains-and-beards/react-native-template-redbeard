@@ -2,7 +2,7 @@ import { REHYDRATE } from 'redux-persist'
 import { expectSaga } from 'redux-saga-test-plan'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
-import { Failure, Loading, RemoteDataType, Success } from '@models/RemoteData'
+import { Failure, Loading, RemoteDataType, Success } from '@api/RemoteData'
 import { resetStore } from '@redux/rootActions'
 import { logIn } from './auth'
 import {

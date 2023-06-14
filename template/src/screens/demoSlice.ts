@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { call, put, takeEvery } from 'typed-redux-saga'
-import { getLatestComic } from '@api/comics'
-import { mapComic } from '@api/mappers/comicMappers'
-import { Comic } from '@api/types/comic.types'
 import {
   Failure,
   Loading,
@@ -11,7 +8,10 @@ import {
   RemoteData,
   Success,
   hasData,
-} from '@models/RemoteData'
+} from '@api/RemoteData'
+import { getLatestComic } from '@api/comics'
+import { mapComic } from '@api/mappers/comicMappers'
+import { Comic } from '@api/types/comic.types'
 import { RootState } from '@redux/store'
 import { getErrorMessage } from '@utils/error'
 

@@ -1,6 +1,6 @@
 import React from 'react'
+import { RemoteDataType } from '@api/RemoteData'
 import { TestIDs } from '@config/testIDs'
-import { RemoteDataType } from '@models/RemoteData'
 import Routes from '@navigation/routes'
 import { createNavigationProps, fireEvent, render } from '@utils/testing'
 import DemoScreen from './DemoScreen'

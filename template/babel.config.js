@@ -29,7 +29,6 @@ module.exports = {
           '@hoc': './src/hoc',
           '@hooks': './src/hooks',
           '@localization': './src/localization',
-          '@models': './src/models',
           '@navigation': './src/navigation',
           '@redux': './src/redux',
           '@screens': './src/screens',
