@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { RenderOptions, render as rtlRender } from '@testing-library/react-native'
+import { MockParams } from 'jest-fetch-mock'
 import React from 'react'
 import { Provider } from 'react-redux'
 import reducer from '@redux/rootReducer'
@@ -32,5 +33,14 @@ export const createNavigationProps = (params?: { [key: string]: unknown }): unkn
   },
   route: {
     params,
+  },
+})
+
+export const createFetchMockParams = (params?: MockParams) => ({
+  ...params,
+  headers: {
+    // content-length header is generated based on body size, but mock doesnt do that automatically
+    'content-length': '420',
+    ...params?.headers,
   },
 })

@@ -52,7 +52,7 @@ async function makeRequest<T>(params: RequestParams, isFirstTry = true): Promise
         return refreshTokensAndRetryRequest<T>(params)
     }
 
-    const hasBody = parseInt(response.headers.get('content-length')!) !== 0;
+    const hasBody = !!response.headers.get('content-length')
     const body = hasBody ? await response.json() : null
 
     if (!response.ok) {
@@ -160,3 +160,7 @@ export const authPostRequest = <T>(params: SimplifiedRequestParams) => postReque
 export const authPutRequest = <T>(params: SimplifiedRequestParams) => putRequest<T>(withAuth(params));
 export const authPatchRequest = <T>(params: SimplifiedRequestParams) => patchRequest<T>(withAuth(params));
 export const authDeleteRequest = <T>(params: SimplifiedRequestParams) => deleteRequest<T>(withAuth(params));
+
+export const testExports = {
+  makeRequest
+};
