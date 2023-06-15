@@ -1,7 +1,6 @@
 import { comicMockResponse } from '__mocks__/fixtures'
 import Config from 'react-native-config'
 import { HttpError } from '@utils/error'
-import { createFetchMockParams } from '@utils/testing'
 import { refreshTokens } from './auth'
 import {
   authDeleteRequest,
@@ -65,7 +64,7 @@ describe('#makeRequest', () => {
   })
 
   it('should return response body from successfull calls', async () => {
-    fetchMock.once(JSON.stringify(comicMockResponse), createFetchMockParams())
+    fetchMock.once(JSON.stringify(comicMockResponse))
     const result = await makeRequest(fakeRequestParams)
 
     expect(result).toEqual(comicMockResponse)
@@ -75,7 +74,7 @@ describe('#makeRequest', () => {
     const errorMessage = 'Not found'
     const errorStatus = 404
     const errorResponse = { error: errorMessage }
-    fetchMock.once(JSON.stringify(errorResponse), createFetchMockParams({ status: errorStatus }))
+    fetchMock.once(JSON.stringify(errorResponse), { status: errorStatus })
 
     try {
       await makeRequest(fakeRequestParams)
@@ -107,7 +106,7 @@ describe('#makeRequest', () => {
     }
     const authErrorResponse = {
       body: JSON.stringify({ error: 'Unauthorized' }),
-      init: createFetchMockParams({ status: 401 }),
+      init: { status: 401 },
     }
 
     const persistNewTokensMock = jest.fn()

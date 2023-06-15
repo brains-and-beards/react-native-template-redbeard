@@ -52,7 +52,7 @@ async function makeRequest<T>(params: RequestParams, isFirstTry = true): Promise
         return refreshTokensAndRetryRequest<T>(params)
     }
 
-    const hasBody = !!response.headers.get('content-length')
+    const hasBody = !!await response.clone().text()
     const body = hasBody ? await response.json() : null
 
     if (!response.ok) {
