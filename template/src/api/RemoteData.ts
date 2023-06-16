@@ -19,9 +19,10 @@ type RefreshingType<T> = {
   data: T
 }
 
-type FailureType<E> = {
+type FailureType<E, T> = {
   type: RemoteDataType.FAILURE
   error: E
+  data?: T
 }
 
 type SuccessType<T> = {
@@ -42,9 +43,10 @@ export const Refreshing = <T>(data: T): RefreshingType<T> => ({
   data,
 })
 
-export const Failure = <E>(error: E): FailureType<E> => ({
+export const Failure = <E, T>(error: E, data?: T): FailureType<E, T> => ({
   type: RemoteDataType.FAILURE,
   error,
+  ...(data && { data }),
 })
 
 export const Success = <T>(data: T): SuccessType<T> => ({
@@ -56,7 +58,7 @@ export type RemoteData<T, E> =
   | NotRequestedType
   | LoadingType
   | RefreshingType<T>
-  | FailureType<E>
+  | FailureType<E, T>
   | SuccessType<T>
 
 export const isNotRequested = <T, E>(
@@ -69,7 +71,7 @@ export const isLoading = <T, E>(remoteData: RemoteData<T, E>): remoteData is Loa
 export const isRefreshing = <T, E>(remoteData: RemoteData<T, E>): remoteData is RefreshingType<T> =>
   remoteData.type === RemoteDataType.REFRESHING
 
-export const isFailure = <T, E>(remoteData: RemoteData<T, E>): remoteData is FailureType<E> =>
+export const isFailure = <T, E>(remoteData: RemoteData<T, E>): remoteData is FailureType<E, T> =>
   remoteData.type === RemoteDataType.FAILURE
 
 export const isSuccess = <T, E>(remoteData: RemoteData<T, E>): remoteData is SuccessType<T> =>
@@ -77,5 +79,5 @@ export const isSuccess = <T, E>(remoteData: RemoteData<T, E>): remoteData is Suc
 
 export const hasData = <T, E>(
   remoteData: RemoteData<T, E>,
-): remoteData is SuccessType<T> | RefreshingType<T> =>
-  isSuccess(remoteData) || isRefreshing(remoteData)
+): remoteData is SuccessType<T> | RefreshingType<T> | Required<FailureType<E, T>> =>
+  !!(remoteData as SuccessType<T> | RefreshingType<T> | Required<FailureType<E, T>>).data
