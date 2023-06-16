@@ -43,6 +43,10 @@ export const Refreshing = <T>(data: T): RefreshingType<T> => ({
   data,
 })
 
+export const Pending = <T, E>(remoteData: RemoteData<T, E>) => {
+  return hasData(remoteData) ? Refreshing(remoteData.data) : Loading
+}
+
 export const Failure = <E, T>(error: E, data?: T): FailureType<E, T> => ({
   state: RemoteDataStates.FAILURE,
   error,
