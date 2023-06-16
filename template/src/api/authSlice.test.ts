@@ -37,7 +37,7 @@ describe('#watchAuthTokens', () => {
       payload: {
         tokens: {
           data: fakeAuthTokens,
-          type: RemoteDataType.Success,
+          type: RemoteDataType.SUCCESS,
         },
         _persist: {
           rehydrated: true,
