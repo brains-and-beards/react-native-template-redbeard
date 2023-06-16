@@ -49,7 +49,7 @@ describe('Comic card', () => {
         demo: {
           counter: 420,
           comic: {
-            type: RemoteDataType.Success as const,
+            type: RemoteDataType.SUCCESS as const,
             data: comicMock,
           },
         },
@@ -70,7 +70,7 @@ describe('Comic card', () => {
         demo: {
           counter: 420,
           comic: {
-            type: RemoteDataType.Loading as const,
+            type: RemoteDataType.LOADING as const,
           },
         },
       }
