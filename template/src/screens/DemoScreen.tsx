@@ -39,7 +39,7 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
     if (isNotRequested(comicRequest)) {
       dispatch(getLatestComicAsync())
     }
-  }, [comicRequest.type])
+  }, [comicRequest.state])
 
   const logOut = async () => {
     try {

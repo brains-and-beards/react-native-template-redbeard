@@ -1,4 +1,4 @@
-export enum RemoteDataType {
+export enum RemoteDataStates {
   NOT_REQUESTED = 'NOT_REQUESTED',
   LOADING = 'LOADING',
   REFRESHING = 'REFRESHING',
@@ -7,50 +7,50 @@ export enum RemoteDataType {
 }
 
 type NotRequestedType = {
-  type: RemoteDataType.NOT_REQUESTED
+  state: RemoteDataStates.NOT_REQUESTED
 }
 
 type LoadingType = {
-  type: RemoteDataType.LOADING
+  state: RemoteDataStates.LOADING
 }
 
 type RefreshingType<T> = {
-  type: RemoteDataType.REFRESHING
+  state: RemoteDataStates.REFRESHING
   data: T
 }
 
 type FailureType<E, T> = {
-  type: RemoteDataType.FAILURE
+  state: RemoteDataStates.FAILURE
   error: E
   data?: T
 }
 
 type SuccessType<T> = {
-  type: RemoteDataType.SUCCESS
+  state: RemoteDataStates.SUCCESS
   data: T
 }
 
 // Constructors
 
 export const NotRequested: NotRequestedType = {
-  type: RemoteDataType.NOT_REQUESTED,
+  state: RemoteDataStates.NOT_REQUESTED,
 }
 
-export const Loading: LoadingType = { type: RemoteDataType.LOADING }
+export const Loading: LoadingType = { state: RemoteDataStates.LOADING }
 
 export const Refreshing = <T>(data: T): RefreshingType<T> => ({
-  type: RemoteDataType.REFRESHING,
+  state: RemoteDataStates.REFRESHING,
   data,
 })
 
 export const Failure = <E, T>(error: E, data?: T): FailureType<E, T> => ({
-  type: RemoteDataType.FAILURE,
+  state: RemoteDataStates.FAILURE,
   error,
   ...(data && { data }),
 })
 
 export const Success = <T>(data: T): SuccessType<T> => ({
-  type: RemoteDataType.SUCCESS,
+  state: RemoteDataStates.SUCCESS,
   data,
 })
 
@@ -63,19 +63,19 @@ export type RemoteData<T, E> =
 
 export const isNotRequested = <T, E>(
   remoteData: RemoteData<T, E>,
-): remoteData is NotRequestedType => remoteData.type === RemoteDataType.NOT_REQUESTED
+): remoteData is NotRequestedType => remoteData.state === RemoteDataStates.NOT_REQUESTED
 
 export const isLoading = <T, E>(remoteData: RemoteData<T, E>): remoteData is LoadingType =>
-  remoteData.type === RemoteDataType.LOADING
+  remoteData.state === RemoteDataStates.LOADING
 
 export const isRefreshing = <T, E>(remoteData: RemoteData<T, E>): remoteData is RefreshingType<T> =>
-  remoteData.type === RemoteDataType.REFRESHING
+  remoteData.state === RemoteDataStates.REFRESHING
 
 export const isFailure = <T, E>(remoteData: RemoteData<T, E>): remoteData is FailureType<E, T> =>
-  remoteData.type === RemoteDataType.FAILURE
+  remoteData.state === RemoteDataStates.FAILURE
 
 export const isSuccess = <T, E>(remoteData: RemoteData<T, E>): remoteData is SuccessType<T> =>
-  remoteData.type === RemoteDataType.SUCCESS
+  remoteData.state === RemoteDataStates.SUCCESS
 
 export const hasData = <T, E>(
   remoteData: RemoteData<T, E>,

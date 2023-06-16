@@ -2,7 +2,7 @@ import { REHYDRATE } from 'redux-persist'
 import { expectSaga } from 'redux-saga-test-plan'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
-import { Failure, Loading, RemoteDataType, Success } from '@api/RemoteData'
+import { Failure, Loading, RemoteDataStates, Success } from '@api/RemoteData'
 import { resetStore } from '@redux/rootActions'
 import { logIn } from './auth'
 import {
@@ -37,7 +37,7 @@ describe('#watchAuthTokens', () => {
       payload: {
         tokens: {
           data: fakeAuthTokens,
-          type: RemoteDataType.SUCCESS,
+          type: RemoteDataStates.SUCCESS,
         },
         _persist: {
           rehydrated: true,
