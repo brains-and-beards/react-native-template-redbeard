@@ -7,6 +7,7 @@ function createTypography<T extends Typography<T>>(values: Typography<T>): T {
   return StyleSheet.create(values)
 }
 
+// Add your app text styles in here
 export default createTypography({
   textInput: {
     fontSize: 24,
