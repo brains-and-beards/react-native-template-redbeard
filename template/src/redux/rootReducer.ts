@@ -1,4 +1,4 @@
-import { AnyAction, combineReducers } from 'redux'
+import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import authReducer from '@api/authSlice'
 import demoReducer from '@screens/demoSlice'
@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   demo: demoReducer,
 })
 
-const rootReducerWithReset = (state: ReturnType<typeof rootReducer>, action: AnyAction) => {
+const rootReducerWithReset: typeof rootReducer = (state, action) => {
   if (resetStore.match(action)) {
     return rootReducer(undefined, action)
   }
@@ -22,4 +22,4 @@ const rootPersistConfig = {
   storage,
   blacklist: ['auth'],
 }
-export default persistReducer(rootPersistConfig, rootReducerWithReset as typeof rootReducer)
+export default persistReducer(rootPersistConfig, rootReducerWithReset)
