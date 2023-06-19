@@ -24,6 +24,6 @@ Project inits with some demo usage files. You can browse them to see the propose
 - `src/screens/demoSlice.ts`
 - `src/screens/__tests__/demoSlice.test.ts`
 
-## SAFETY DISCLAIMER
+## Security
 
-Project contains basic code for auth token management. It stores sensitive information with [react-native-encrypted-storage](https://github.com/emeraldsanto/react-native-encrypted-storage#readme) library. Use at your own risk or replace it with your own implementation.
+Project contains basic code for auth token management. It stores sensitive information with [react-native-encrypted-storage](https://github.com/emeraldsanto/react-native-encrypted-storage#readme) library. Although it has been listed in [react-native's official docs](https://reactnative.dev/docs/security#:~:text=react%2Dnative%2Dencrypted%2Dstorage%20%2D%20uses%20Keychain%20on%20iOS%20and%20EncryptedSharedPreferences%20on%20Android.), it's a community-maintaind package. **Use at your own risk** or replace it with your own implementation.
