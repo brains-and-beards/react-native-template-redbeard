@@ -1,5 +1,6 @@
 import { enableFetchMocks } from 'jest-fetch-mock'
 import 'react-native-gesture-handler/jestSetup'
+import { Middleware } from 'redux'
 
 enableFetchMocks()
 
@@ -43,5 +44,14 @@ jest.mock('redux-persist', () => {
   return {
     ...real,
     persistReducer: jest.fn().mockImplementation((_config, reducers) => reducers),
+  }
+})
+jest.mock('react-native-mmkv-flipper-plugin', () => ({
+  initializeMMKVFlipper: jest.fn(),
+}))
+jest.mock('redux-flipper', () => {
+  const fakeMiddleware: Middleware = _store => next => action => next(action)
+  return {
+    default: jest.fn(() => fakeMiddleware),
   }
 })

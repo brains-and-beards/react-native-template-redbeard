@@ -2,11 +2,10 @@ import EncryptedStorage from 'react-native-encrypted-storage'
 import { MMKV } from 'react-native-mmkv'
 import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin'
 import { Storage } from 'redux-persist'
-import { isJest } from '@utils/env'
 
 const storage = new MMKV()
 
-if (__DEV__ && !isJest) {
+if (__DEV__) {
   initializeMMKVFlipper({ default: storage })
 }
 

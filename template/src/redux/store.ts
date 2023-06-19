@@ -3,7 +3,6 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 
 import createSagaMiddleware from 'redux-saga'
 import { logInAsyncSuccess } from '@api/authSlice'
 import { setAuthConfig } from '@api/common'
-import { isJest } from '@utils/env'
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
 
@@ -11,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware()
 
 const middlewares = [sagaMiddleware]
 
-if (__DEV__ && !isJest) {
+if (__DEV__) {
   const createDebugger = require('redux-flipper').default
   middlewares.push(createDebugger())
 }
