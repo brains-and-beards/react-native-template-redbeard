@@ -5,16 +5,16 @@ import demoReducer from '@screens/demoSlice'
 import { storage } from './persistence'
 import { resetStore } from './rootActions'
 
-const appReducer = combineReducers({
+const rootReducer = combineReducers({
   auth: authReducer,
   demo: demoReducer,
 })
 
-const rootReducer = (state: ReturnType<typeof appReducer>, action: AnyAction) => {
+const rootReducerWithReset = (state: ReturnType<typeof rootReducer>, action: AnyAction) => {
   if (resetStore.match(action)) {
-    return appReducer(undefined, action)
+    return rootReducer(undefined, action)
   }
-  return appReducer(state, action)
+  return rootReducer(state, action)
 }
 
 const rootPersistConfig = {
@@ -22,4 +22,4 @@ const rootPersistConfig = {
   storage,
   blacklist: ['auth'],
 }
-export default persistReducer(rootPersistConfig, rootReducer as typeof appReducer)
+export default persistReducer(rootPersistConfig, rootReducerWithReset as typeof rootReducer)
