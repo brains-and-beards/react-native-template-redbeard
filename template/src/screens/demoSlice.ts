@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { call, put, takeEvery } from 'typed-redux-saga'
-import { Failure, NotRequested, Pending, RemoteData, Success } from '@api/RemoteData'
 import { getLatestComic } from '@api/comics'
 import { mapComic } from '@api/mappers/comicMappers'
 import { Comic } from '@api/types/comic.types'
 import { RootState } from '@redux/store'
+import { Failure, NotRequested, Pending, RemoteData, Success } from '@utils/api'
 import { getErrorMessage } from '@utils/error'
 
 export function* fetchLatestComic() {
