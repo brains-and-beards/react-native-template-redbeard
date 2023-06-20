@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Colors from '@config/ui/colors'
-import { FC } from '@utils/types'
 
-const MainScreenLayout: FC = ({ children }) => {
+const MainScreenLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
       <StatusBar />
