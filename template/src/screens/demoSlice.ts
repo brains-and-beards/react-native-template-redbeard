@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { put, takeEvery } from 'redux-saga/effects'
-import { SuccessResponse, makeApiCall } from '@api/apiSaga'
-import { getLatestComic } from '@api/comics'
-import { Comic, parseComic } from '@models/ComicModel'
+import { call, put, takeEvery } from 'typed-redux-saga'
 import {
   Failure,
   Loading,
@@ -11,23 +8,25 @@ import {
   RemoteData,
   Success,
   hasData,
-} from '@models/RemoteData'
+} from '@api/RemoteData'
+import { getLatestComic } from '@api/comics'
+import { mapComic } from '@api/mappers/comicMappers'
+import { Comic } from '@api/types/comic.types'
 import { RootState } from '@redux/store'
+import { getErrorMessage } from '@utils/error'
 
-export function* fetchLatestComic(): Generator {
-  const response = yield makeApiCall(getLatestComic, {
-    onError: getLatestComicAsyncFailure,
-  })
-
-  if (response) {
-    const { json } = response as SuccessResponse
-    const comic = parseComic(json)
-    yield put(getLatestComicAsyncSuccess(comic))
+export function* fetchLatestComic() {
+  try {
+    const comic = yield* call(getLatestComic)
+    yield* put(getLatestComicAsyncSuccess(mapComic(comic)))
+  } catch (error) {
+    const errorMessage = getErrorMessage(error)
+    yield* put(getLatestComicAsyncFailure(errorMessage))
   }
 }
 
-export function* watchFetchLatestComicSaga() {
-  yield takeEvery(getLatestComicAsync, fetchLatestComic)
+export function* watchGetLatestComicSaga() {
+  yield* takeEvery(getLatestComicAsync, fetchLatestComic)
 }
 
 interface DemoState {

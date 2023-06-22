@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, Button, Image, StyleSheet, Text } from 'react-native'
+import { hasData, isNotRequested } from '@api/RemoteData'
 import MainScreenLayout from '@components/layouts/MainScreenLayout'
 import DemoCard from '@components/surfaces/DemoCard'
 import { TestIDs } from '@config/testIDs'
 import Colors from '@config/ui/colors'
 import useAppDispatch from '@hooks/useAppDispatch'
 import useAppSelector from '@hooks/useAppSelector'
-import { hasData } from '@models/RemoteData'
 import type { RootStackScreenProps } from '@navigation/navigators/RootStackNavigator'
 import Routes from '@navigation/routes'
+import { clearPersistence } from '@redux/persistence'
+import { resetStore } from '@redux/rootActions'
+import { persistor } from '@redux/store'
 import {
   decrementCounterBy,
   getLatestComicAsync,
@@ -26,14 +29,31 @@ interface DemoScreenProps {
 }
 
 const DemoScreen = ({ navigation }: DemoScreenProps) => {
+  const [isLogoutLoading, setIsLogoutLoading] = useState(false)
   const counter = useAppSelector(selectCounter)
   const comicRequest = useAppSelector(selectComic)
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
 
   useEffect(() => {
-    dispatch(getLatestComicAsync())
-  }, [])
+    if (isNotRequested(comicRequest)) {
+      dispatch(getLatestComicAsync())
+    }
+  }, [comicRequest.type])
+
+  const logOut = async () => {
+    try {
+      setIsLogoutLoading(true)
+      // typical logout for apps that require user to be logged in
+      // before giving any further access
+      persistor.pause()
+      await clearPersistence()
+      dispatch(resetStore())
+      persistor.persist()
+    } finally {
+      setIsLogoutLoading(false)
+    }
+  }
 
   const comicData = hasData(comicRequest) ? comicRequest.data : null
 
@@ -71,6 +91,13 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
           onPress={() => navigation.navigate(Routes.TRANSLATIONS_DEMO_SCREEN)}
           title={t('demoScreen.goToTranslationsDemo')}
         />
+      </DemoCard>
+      <DemoCard>
+        {isLogoutLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <Button title={t('demoScreen.logOutButton')} onPress={logOut} />
+        )}
       </DemoCard>
     </MainScreenLayout>
   )

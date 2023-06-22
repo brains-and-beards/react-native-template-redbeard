@@ -1,6 +1,7 @@
-import { all } from 'redux-saga/effects'
-import { watchFetchLatestComicSaga } from '@screens/demoSlice'
+import { all } from 'typed-redux-saga'
+import { watchAuthTokens, watchLogInSaga } from '@api/authSlice'
+import { watchGetLatestComicSaga } from '@screens/demoSlice'
 
 export default function* rootSaga() {
-  yield all([watchFetchLatestComicSaga()])
+  yield* all([watchAuthTokens(), watchLogInSaga(), watchGetLatestComicSaga()])
 }

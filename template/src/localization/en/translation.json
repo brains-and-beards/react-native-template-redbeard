@@ -1,6 +1,9 @@
 {
+    "loginScreen": {
+        "logInButton": "Log in"
+    },
     "demoScreen": {
-        "hermesEnabled": "Hermes enabled -> {{enabled}}",
+        "logOutButton": "Log out",
         "incrementButton": "Increment counter by 5",
         "decrementButton": "Decrement counter by 15",
         "counter": "Counter:",

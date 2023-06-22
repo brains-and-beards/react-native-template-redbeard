@@ -1,9 +1,8 @@
+import { enableFetchMocks } from 'jest-fetch-mock'
 import 'react-native-gesture-handler/jestSetup'
+import { Middleware } from 'redux'
 
-jest.useFakeTimers()
-
-const customGlobal = global
-customGlobal.fetch = require('jest-fetch-mock')
+enableFetchMocks()
 
 // react-native-config-node: read env variables from .env.example
 process.env.NODE_ENV = 'example'
@@ -34,3 +33,25 @@ jest.mock('react-native-splash-screen', () => ({
   show: jest.fn(),
   hide: jest.fn(),
 }))
+jest.mock('react-native-encrypted-storage', () => ({
+  setItem: jest.fn(() => Promise.resolve(true)),
+  getItem: jest.fn(() => Promise.resolve('fake-stored-value')),
+  removeItem: jest.fn(() => Promise.resolve()),
+  clear: jest.fn(() => Promise.resolve()),
+}))
+jest.mock('redux-persist', () => {
+  const real = jest.requireActual('redux-persist')
+  return {
+    ...real,
+    persistReducer: jest.fn().mockImplementation((_config, reducers) => reducers),
+  }
+})
+jest.mock('react-native-mmkv-flipper-plugin', () => ({
+  initializeMMKVFlipper: jest.fn(),
+}))
+jest.mock('redux-flipper', () => {
+  const fakeMiddleware: Middleware = _store => next => action => next(action)
+  return {
+    default: jest.fn(() => fakeMiddleware),
+  }
+})

@@ -2,14 +2,19 @@
 
 This app has been generated using [react-native-template-redbeard](https://github.com/brains-and-beards/react-native-template-redbeard). It includes preconfigured file structure and packages. It also inits with some demo usage files, feel free to remove these:
 
+- `src/__mocks__/fixtures`
+- `src/api/mappers/comicMappers.ts`
+- `src/api/types/comic.types.ts`
 - `src/api/comics.ts`
+- `src/components/inputs/DemoTextInput.tsx`
 - `src/components/surfaces/DemoCard.tsx`
 - `src/localization/pl`
-- `src/model/ComicModel.ts`
+- `src/screens/LoginScreen.tsx`
 - `src/screens/DemoScreen.tsx`
 - `src/screens/DemoScreen.test.tsx`
 - `src/screens/TranslationsDemoScreen`
 - `src/screens/demoSlice.ts`
+- `src/screens/__tests__/demoSlice.test.ts`
 
 ## File tree
 
@@ -27,6 +32,10 @@ This app has been generated using [react-native-template-redbeard](https://githu
 - `redux/` - Actions, reducers, sagas
 - `screens/` - App screens
 - `utils/` - Universal helpers
+
+## Authentication
+
+App uses preconfigured auth token management. It stores sensitive information via [react-native-encrypted-storage](https://github.com/emeraldsanto/react-native-encrypted-storage#readme) library.
 
 ## Environments
 
