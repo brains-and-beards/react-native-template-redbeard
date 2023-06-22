@@ -1,21 +1,20 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { StyleSheet, Text } from 'react-native'
 import Colors from '@config/ui/colors'
-import { FC } from '@utils/types'
 
-export const TitleText: FC = ({ children }) => {
+export const TitleText: React.FC<PropsWithChildren> = ({ children }) => {
   return <Text style={styles.titleText}>{children}</Text>
 }
 
-export const DescText: FC = ({ children }) => {
+export const DescText: React.FC<PropsWithChildren> = ({ children }) => {
   return <Text style={styles.descText}>{children}</Text>
 }
 
-export const ExampleText: FC = ({ children }) => {
+export const ExampleText: React.FC<PropsWithChildren> = ({ children }) => {
   return <Text style={styles.exampleText}>{children}</Text>
 }
 
-export const BoldText: FC = ({ children }) => {
+export const BoldText: React.FC<PropsWithChildren> = ({ children }) => {
   return <Text style={styles.boldText}>{children}</Text>
 }
 
