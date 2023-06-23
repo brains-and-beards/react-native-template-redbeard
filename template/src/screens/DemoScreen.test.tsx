@@ -1,7 +1,7 @@
 import React from 'react'
+import { RemoteDataType } from '@api/RemoteData'
 import { TestIDs } from '@config/testIDs'
 import Routes from '@navigation/routes'
-import { RemoteDataStates } from '@utils/api'
 import { createNavigationProps, fireEvent, render } from '@utils/testing'
 import DemoScreen from './DemoScreen'
 
@@ -49,7 +49,7 @@ describe('Comic card', () => {
         demo: {
           counter: 420,
           comic: {
-            state: RemoteDataStates.SUCCESS as const,
+            type: RemoteDataType.Success as const,
             data: comicMock,
           },
         },
@@ -70,7 +70,7 @@ describe('Comic card', () => {
         demo: {
           counter: 420,
           comic: {
-            state: RemoteDataStates.LOADING as const,
+            type: RemoteDataType.Loading as const,
           },
         },
       }

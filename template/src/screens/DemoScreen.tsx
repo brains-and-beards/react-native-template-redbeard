@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, Button, Image, StyleSheet, Text } from 'react-native'
+import { hasData, isNotRequested } from '@api/RemoteData'
 import MainScreenLayout from '@components/layouts/MainScreenLayout'
 import DemoCard from '@components/surfaces/DemoCard'
 import { TestIDs } from '@config/testIDs'
@@ -12,7 +13,6 @@ import Routes from '@navigation/routes'
 import { clearPersistence } from '@redux/persistence'
 import { resetStore } from '@redux/rootActions'
 import { persistor } from '@redux/store'
-import { hasData, isNotRequested } from '@utils/api'
 import {
   decrementCounterBy,
   getLatestComicAsync,
@@ -39,7 +39,7 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
     if (isNotRequested(comicRequest)) {
       dispatch(getLatestComicAsync())
     }
-  }, [comicRequest.state])
+  }, [comicRequest.type])
 
   const logOut = async () => {
     try {

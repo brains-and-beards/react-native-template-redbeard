@@ -11,8 +11,8 @@ import {
   getLatestComicAsyncSuccess,
   incrementCounterBy,
 } from '@screens/demoSlice'
+import { Failure, Loading, Refreshing, Success } from '../../api/RemoteData'
 import { getLatestComic } from '../../api/comics'
-import { Failure, Loading, Refreshing, Success } from '../../utils/api'
 
 describe('DemoSlice', () => {
   describe('Demo saga fetchLatestComic', () => {
