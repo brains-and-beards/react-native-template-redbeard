@@ -1,18 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { call, put, takeEvery } from 'typed-redux-saga'
-import {
-  Failure,
-  Loading,
-  NotRequested,
-  Refreshing,
-  RemoteData,
-  Success,
-  hasData,
-} from '@api/RemoteData'
 import { getLatestComic } from '@api/comics'
 import { mapComic } from '@api/mappers/comicMappers'
 import { Comic } from '@api/types/comic.types'
 import { RootState } from '@redux/store'
+import { Failure, NotRequested, Pending, RemoteData, Success } from '@utils/api'
 import { getErrorMessage } from '@utils/error'
 
 export function* fetchLatestComic() {
@@ -50,7 +42,7 @@ export const demoSlice = createSlice({
       state.counter -= action.payload
     },
     getLatestComicAsync: state => {
-      state.comic = hasData(state.comic) ? Refreshing(state.comic.data) : Loading
+      state.comic = Pending(state.comic)
     },
     getLatestComicAsyncSuccess: (state, action: PayloadAction<Comic>) => {
       state.comic = Success(action.payload)
