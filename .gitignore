@@ -2,3 +2,8 @@ node_modules/
 .vscode/
 .idea/
 .DS_Store
+
+template/Gemfile.lock
+template/yarn.lock
+template/ios/Podfile.lock
+template/ios/HelloWorld.xcworkspace/contents.xcworkspacedata
