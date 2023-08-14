@@ -1,32 +1,16 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { comicMockResponse as mockComicData } from '__mocks__/fixtures'
 import React from 'react'
 import { TestIDs } from '@config/testIDs'
 import Routes from '@navigation/routes'
 import { createNavigationProps, fireEvent, render } from '@utils/testing'
-import RealDemoScreen from './DemoScreen'
-
-const DemoScreen = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  })
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RealDemoScreen {...navPropsMock} />
-    </QueryClientProvider>
-  )
-}
+import DemoScreen from './DemoScreen'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const navPropsMock = createNavigationProps() as any
 
 describe('when increment button pressed', () => {
   it('should increment counter by 5', () => {
-    const { getByText } = render(<DemoScreen />)
+    const { getByText } = render(<DemoScreen {...navPropsMock} />)
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
@@ -40,7 +24,7 @@ describe('when increment button pressed', () => {
 
 describe('when decrement button pressed', () => {
   it('should decrement counter by 15', () => {
-    const { getByText } = render(<DemoScreen />)
+    const { getByText } = render(<DemoScreen {...navPropsMock} />)
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
@@ -69,7 +53,7 @@ describe('Comic card', () => {
         },
       }
 
-      const { getByText, getByTestId } = render(<DemoScreen />, {
+      const { getByText, getByTestId } = render(<DemoScreen {...navPropsMock} />, {
         preloadedState,
       })
 
@@ -87,7 +71,7 @@ describe('Comic card', () => {
         },
       }
 
-      const { getByTestId } = render(<DemoScreen />, {
+      const { getByTestId } = render(<DemoScreen {...navPropsMock} />, {
         preloadedState,
       })
 
@@ -98,7 +82,7 @@ describe('Comic card', () => {
 
 describe('when "go to translations demo" pressed', () => {
   it('should navigate to translations demo screen', () => {
-    const { getByText } = render(<DemoScreen />)
+    const { getByText } = render(<DemoScreen {...navPropsMock} />)
     fireEvent.press(getByText(/demoScreen.goToTranslationsDemo/))
 
     expect(navPropsMock.navigation.navigate).toBeCalledWith(Routes.TRANSLATIONS_DEMO_SCREEN)

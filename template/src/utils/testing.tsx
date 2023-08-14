@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RenderOptions, render as rtlRender } from '@testing-library/react-native'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -19,7 +20,19 @@ function render(
   }: Options = {},
 ) {
   function Wrapper({ children }: { children: JSX.Element }) {
-    return <Provider store={store}>{children}</Provider>
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    })
+
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>{children}</Provider>
+      </QueryClientProvider>
+    )
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
 }
