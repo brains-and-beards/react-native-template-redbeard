@@ -30,6 +30,7 @@ This app has been generated using [react-native-template-redbeard](https://githu
 - `localization/` - Things related to user locale
 - `navigation/` - Navigators, routes
 - `redux/` - Actions, reducers, sagas
+- `remote/` - Remote state (via TanStack Query)
 - `screens/` - App screens
 - `utils/` - Universal helpers
 

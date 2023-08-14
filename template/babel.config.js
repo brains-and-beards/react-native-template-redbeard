@@ -31,6 +31,7 @@ module.exports = {
           '@localization': './src/localization',
           '@navigation': './src/navigation',
           '@redux': './src/redux',
+          '@remote': './src/remote',
           '@screens': './src/screens',
           '@utils': './src/utils',
         },

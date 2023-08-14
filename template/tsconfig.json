@@ -48,6 +48,7 @@
       "@localization/*": ["./localization/*"],
       "@navigation/*": ["./navigation/*"],
       "@redux/*": ["./redux/*"],
+      "@remote/*": ["./remote/*"],
       "@screens/*": ["./screens/*"],
       "@utils/*": ["./utils/*"]
     },
