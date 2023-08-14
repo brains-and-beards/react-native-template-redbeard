@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { logIn } from '@api/auth'
 import { logInAsyncSuccess } from '@api/authSlice'
 import { setAuthConfig } from '@api/common'
@@ -22,6 +22,7 @@ export const useLogInMutation = () => {
 
 export const useLogOutMutation = () => {
   const dispatch = useAppDispatch()
+  const client = useQueryClient()
 
   return useMutation({
     mutationKey: ['auth', 'logOut'],
@@ -35,6 +36,7 @@ export const useLogOutMutation = () => {
       await clearPersistence()
       setAuthConfig({})
       dispatch(resetStore())
+      client.clear()
       persistor.persist()
     },
   })
