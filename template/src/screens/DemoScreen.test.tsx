@@ -1,16 +1,32 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { comicMockResponse as mockComicData } from '__mocks__/fixtures'
 import React from 'react'
 import { TestIDs } from '@config/testIDs'
 import Routes from '@navigation/routes'
-import { RemoteDataStates } from '@utils/api'
 import { createNavigationProps, fireEvent, render } from '@utils/testing'
-import DemoScreen from './DemoScreen'
+import RealDemoScreen from './DemoScreen'
+
+const DemoScreen = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  })
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RealDemoScreen {...navPropsMock} />
+    </QueryClientProvider>
+  )
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const navPropsMock = createNavigationProps() as any
 
 describe('when increment button pressed', () => {
   it('should increment counter by 5', () => {
-    const { getByText } = render(<DemoScreen {...navPropsMock} />)
+    const { getByText } = render(<DemoScreen />)
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
@@ -24,7 +40,7 @@ describe('when increment button pressed', () => {
 
 describe('when decrement button pressed', () => {
   it('should decrement counter by 15', () => {
-    const { getByText } = render(<DemoScreen {...navPropsMock} />)
+    const { getByText } = render(<DemoScreen />)
     const prevCounterValue = parseInt(
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
@@ -38,7 +54,9 @@ describe('when decrement button pressed', () => {
 
 describe('Comic card', () => {
   describe('when comic is available', () => {
-    it('renders the comic', () => {
+    it('renders the comic', async () => {
+      fetchMock.mockResponseOnce(JSON.stringify(mockComicData))
+
       const comicMock = {
         id: 1,
         title: 'Some mock title',
@@ -48,13 +66,10 @@ describe('Comic card', () => {
       const preloadedState = {
         demo: {
           counter: 420,
-          comic: {
-            state: RemoteDataStates.SUCCESS as const,
-            data: comicMock,
-          },
         },
       }
-      const { getByText, getByTestId } = render(<DemoScreen {...navPropsMock} />, {
+
+      const { getByText, getByTestId } = render(<DemoScreen />, {
         preloadedState,
       })
 
@@ -69,12 +84,10 @@ describe('Comic card', () => {
       const preloadedState = {
         demo: {
           counter: 420,
-          comic: {
-            state: RemoteDataStates.LOADING as const,
-          },
         },
       }
-      const { getByTestId } = render(<DemoScreen {...navPropsMock} />, {
+
+      const { getByTestId } = render(<DemoScreen />, {
         preloadedState,
       })
 
@@ -85,7 +98,7 @@ describe('Comic card', () => {
 
 describe('when "go to translations demo" pressed', () => {
   it('should navigate to translations demo screen', () => {
-    const { getByText } = render(<DemoScreen {...navPropsMock} />)
+    const { getByText } = render(<DemoScreen />)
     fireEvent.press(getByText(/demoScreen.goToTranslationsDemo/))
 
     expect(navPropsMock.navigation.navigate).toBeCalledWith(Routes.TRANSLATIONS_DEMO_SCREEN)

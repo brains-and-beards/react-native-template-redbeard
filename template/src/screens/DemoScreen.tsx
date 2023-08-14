@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, Button, Image, StyleSheet, Text } from 'react-native'
 import MainScreenLayout from '@components/layouts/MainScreenLayout'
@@ -10,14 +10,8 @@ import useAppSelector from '@hooks/useAppSelector'
 import type { RootStackScreenProps } from '@navigation/navigators/RootStackNavigator'
 import Routes from '@navigation/routes'
 import { useLogOutMutation } from '@remote/auth'
-import { hasData, isNotRequested } from '@utils/api'
-import {
-  decrementCounterBy,
-  getLatestComicAsync,
-  incrementCounterBy,
-  selectComic,
-  selectCounter,
-} from './demoSlice'
+import { useLatestComicQuery } from '@remote/comics'
+import { decrementCounterBy, incrementCounterBy, selectCounter } from './demoSlice'
 
 export type DemoScreenParams = undefined
 
@@ -28,22 +22,12 @@ interface DemoScreenProps {
 
 const DemoScreen = ({ navigation }: DemoScreenProps) => {
   const counter = useAppSelector(selectCounter)
-  const comicRequest = useAppSelector(selectComic)
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
 
-  useEffect(() => {
-    if (isNotRequested(comicRequest) || !hasData(comicRequest)) {
-      dispatch(getLatestComicAsync())
-    }
-  }, [comicRequest.state])
+  const { isLoading, data: comicData } = useLatestComicQuery()
 
-  const { mutate, isPending: isLogoutLoading } = useLogOutMutation()
-  const logOut = () => {
-    mutate()
-  }
-
-  const comicData = hasData(comicRequest) ? comicRequest.data : null
+  const { mutate: logOut, isPending: isLogoutLoading } = useLogOutMutation()
 
   return (
     <MainScreenLayout>
@@ -59,7 +43,7 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
         <Text style={styles.demoText}>{`${t('demoScreen.counter')} ${counter}`}</Text>
       </DemoCard>
       <DemoCard>
-        {comicData ? (
+        {!isLoading && comicData ? (
           <>
             <Text style={styles.demoText}>{comicData.title}</Text>
             <Image
@@ -84,7 +68,12 @@ const DemoScreen = ({ navigation }: DemoScreenProps) => {
         {isLogoutLoading ? (
           <ActivityIndicator />
         ) : (
-          <Button title={t('demoScreen.logOutButton')} onPress={logOut} />
+          <Button
+            title={t('demoScreen.logOutButton')}
+            onPress={() => {
+              logOut()
+            }}
+          />
         )}
       </DemoCard>
     </MainScreenLayout>
