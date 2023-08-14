@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { logIn } from '@api/auth'
 import { logInAsyncSuccess } from '@api/authSlice'
+import { setAuthConfig } from '@api/common'
 import useAppDispatch from '@hooks/useAppDispatch'
 import { clearPersistence } from '@redux/persistence'
 import { resetStore } from '@redux/rootActions'
@@ -13,6 +14,7 @@ export const useLogInMutation = () => {
     mutationKey: ['auth', 'logIn'],
     mutationFn: logIn,
     onSuccess: tokens => {
+      setAuthConfig(tokens)
       dispatch(logInAsyncSuccess(tokens))
     },
   })
@@ -31,6 +33,7 @@ export const useLogOutMutation = () => {
       // before giving any further access
       persistor.pause()
       await clearPersistence()
+      setAuthConfig({})
       dispatch(resetStore())
       persistor.persist()
     },
