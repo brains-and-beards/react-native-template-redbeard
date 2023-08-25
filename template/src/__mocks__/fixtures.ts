@@ -4,3 +4,10 @@ export const comicMockResponse = {
   img: 'https://imgs.xkcd.com/comics/first_internet_interaction.png',
   title: 'First Internet Interaction',
 }
+
+export const comicMockParsed = {
+  description: comicMockResponse.alt,
+  id: comicMockResponse.num,
+  imageUrl: comicMockResponse.img,
+  title: comicMockResponse.title,
+}
