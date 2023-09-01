@@ -11,15 +11,11 @@ interface Options extends RenderOptions {
   store?: ReturnType<typeof configureStore>
 }
 
-function render(
-  ui: JSX.Element,
-  {
-    preloadedState,
-    store = configureStore({ reducer, preloadedState }),
-    ...renderOptions
-  }: Options = {},
-) {
-  function Wrapper({ children }: { children: JSX.Element }) {
+export const createTestEnvWrapper = ({
+  preloadedState = {},
+  store = configureStore({ reducer, preloadedState }),
+}: Options) => {
+  const TestEnvWrapper = ({ children }: { children: JSX.Element }) => {
     const queryClient = new QueryClient({
       defaultOptions: {
         queries: {
@@ -34,7 +30,22 @@ function render(
       </QueryClientProvider>
     )
   }
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+
+  return TestEnvWrapper
+}
+
+function render(
+  ui: JSX.Element,
+  {
+    preloadedState,
+    store = configureStore({ reducer, preloadedState }),
+    ...renderOptions
+  }: Options = {},
+) {
+  return rtlRender(ui, {
+    wrapper: createTestEnvWrapper({ preloadedState, store }),
+    ...renderOptions,
+  })
 }
 export * from '@testing-library/react-native'
 export { render }
