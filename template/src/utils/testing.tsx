@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RenderOptions, render as rtlRender } from '@testing-library/react-native'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -10,6 +11,29 @@ interface Options extends RenderOptions {
   store?: ReturnType<typeof configureStore>
 }
 
+export const createTestEnvWrapper = ({
+  preloadedState = {},
+  store = configureStore({ reducer, preloadedState }),
+}: Options) => {
+  const TestEnvWrapper = ({ children }: { children: JSX.Element }) => {
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    })
+
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>{children}</Provider>
+      </QueryClientProvider>
+    )
+  }
+
+  return TestEnvWrapper
+}
+
 function render(
   ui: JSX.Element,
   {
@@ -18,10 +42,10 @@ function render(
     ...renderOptions
   }: Options = {},
 ) {
-  function Wrapper({ children }: { children: JSX.Element }) {
-    return <Provider store={store}>{children}</Provider>
-  }
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  return rtlRender(ui, {
+    wrapper: createTestEnvWrapper({ preloadedState, store }),
+    ...renderOptions,
+  })
 }
 export * from '@testing-library/react-native'
 export { render }

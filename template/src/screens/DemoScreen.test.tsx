@@ -1,12 +1,25 @@
+import { comicMockParsed } from '__mocks__/fixtures'
 import React from 'react'
 import { TestIDs } from '@config/testIDs'
 import Routes from '@navigation/routes'
-import { RemoteDataStates } from '@utils/api'
-import { createNavigationProps, fireEvent, render } from '@utils/testing'
+import * as remoteComics from '@remote/comics'
+import { act, createNavigationProps, fireEvent, render } from '@utils/testing'
 import DemoScreen from './DemoScreen'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const navPropsMock = createNavigationProps() as any
+
+const mockUseLatestComicQuery = jest.spyOn(remoteComics, 'useLatestComicQuery').mockReturnValue({
+  isLoading: false,
+  data: undefined,
+} as ReturnType<typeof remoteComics.useLatestComicQuery>)
+
+jest.mock('@remote/auth', () => ({
+  useLogOutMutation: jest.fn().mockImplementation(() => ({
+    mutate: jest.fn(),
+    isPending: false,
+  })),
+}))
 
 describe('when increment button pressed', () => {
   it('should increment counter by 5', () => {
@@ -15,7 +28,10 @@ describe('when increment button pressed', () => {
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
     )
-    fireEvent.press(getByText(/demoScreen.incrementButton/))
+    act(() => {
+      fireEvent.press(getByText(/demoScreen.incrementButton/))
+    })
+
     const counterValue = parseInt(getByText(/demoScreen.counter/).props.children.split(' ')[1], 10)
 
     expect(counterValue).toBe(prevCounterValue + 5)
@@ -29,7 +45,10 @@ describe('when decrement button pressed', () => {
       getByText(/demoScreen.counter/).props.children.split(' ')[1],
       10,
     )
-    fireEvent.press(getByText(/demoScreen.decrementButton/))
+
+    act(() => {
+      fireEvent.press(getByText(/demoScreen.decrementButton/))
+    })
     const counterValue = parseInt(getByText(/demoScreen.counter/).props.children.split(' ')[1], 10)
 
     expect(counterValue).toBe(prevCounterValue - 15)
@@ -38,42 +57,41 @@ describe('when decrement button pressed', () => {
 
 describe('Comic card', () => {
   describe('when comic is available', () => {
-    it('renders the comic', () => {
-      const comicMock = {
-        id: 1,
-        title: 'Some mock title',
-        imageUrl: 'http://example.com/test.jpg',
-        description: 'Some mock description',
-      }
+    it('renders the comic', async () => {
+      mockUseLatestComicQuery.mockReturnValueOnce({
+        isLoading: false,
+        data: comicMockParsed,
+      } as ReturnType<typeof remoteComics.useLatestComicQuery>)
+
       const preloadedState = {
         demo: {
           counter: 420,
-          comic: {
-            state: RemoteDataStates.SUCCESS as const,
-            data: comicMock,
-          },
         },
       }
+
       const { getByText, getByTestId } = render(<DemoScreen {...navPropsMock} />, {
         preloadedState,
       })
 
-      expect(getByText(comicMock.title)).toBeDefined()
-      expect(getByText(comicMock.description)).toBeDefined()
+      expect(getByText(comicMockParsed.title)).toBeDefined()
+      expect(getByText(comicMockParsed.description)).toBeDefined()
       expect(getByTestId(TestIDs.DEMO_COMIC_IMAGE)).toBeDefined()
     })
   })
 
   describe('when NO comic is available', () => {
+    mockUseLatestComicQuery.mockReturnValue({
+      isLoading: true,
+      data: undefined,
+    } as ReturnType<typeof remoteComics.useLatestComicQuery>)
+
     it('renders the loading spinner', () => {
       const preloadedState = {
         demo: {
           counter: 420,
-          comic: {
-            state: RemoteDataStates.LOADING as const,
-          },
         },
       }
+
       const { getByTestId } = render(<DemoScreen {...navPropsMock} />, {
         preloadedState,
       })
@@ -86,7 +104,9 @@ describe('Comic card', () => {
 describe('when "go to translations demo" pressed', () => {
   it('should navigate to translations demo screen', () => {
     const { getByText } = render(<DemoScreen {...navPropsMock} />)
-    fireEvent.press(getByText(/demoScreen.goToTranslationsDemo/))
+    act(() => {
+      fireEvent.press(getByText(/demoScreen.goToTranslationsDemo/))
+    })
 
     expect(navPropsMock.navigation.navigate).toBeCalledWith(Routes.TRANSLATIONS_DEMO_SCREEN)
   })

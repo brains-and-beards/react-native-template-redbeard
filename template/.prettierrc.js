@@ -16,6 +16,7 @@ module.exports = {
     '^@localization/(.*)$',
     '^@navigation/(.*)$',
     '^@redux/(.*)$',
+    '^@remote/(.*)$',
     '^@screens/(.*)$',
     '^@utils/(.*)$',
     '^[./]',
